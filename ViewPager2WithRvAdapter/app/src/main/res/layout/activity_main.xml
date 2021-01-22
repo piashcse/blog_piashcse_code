@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
@@ -11,18 +11,20 @@
             android:id="@+id/view_Pager"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/into_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-10dp"
+            android:layout_marginTop="200dp"
+            app:layout_constraintTop_toTopOf="@+id/view_Pager"
             app:tabBackground="@drawable/pager_indicator"
+            android:background="@android:color/transparent"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp"
-            app:tabPaddingEnd="8dp"
-            app:tabPaddingStart="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/view_Pager" />
+            app:tabPaddingEnd="6dp"
+            app:tabPaddingStart="6dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
