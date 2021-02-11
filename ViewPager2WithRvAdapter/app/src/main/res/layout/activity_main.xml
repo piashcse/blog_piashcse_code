@@ -5,6 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/material_blue50"
         tools:context=".MainActivity">
 
         <androidx.viewpager2.widget.ViewPager2

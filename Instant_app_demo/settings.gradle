@@ -1,0 +1,3 @@
+include ':instant'
+include ':installed'
+rootProject.name = "Instant_app_demo"
