@@ -8,7 +8,6 @@ import kotlinx.parcelize.Parcelize
 
 
 class RepositoriesModel : ArrayList<RepositoriesModel.RepositoriesModelItem>(){
-    @SuppressLint("ParcelCreator")
     @Parcelize
     data class RepositoriesModelItem(
         @SerializedName("archive_url")
@@ -104,7 +103,6 @@ class RepositoriesModel : ArrayList<RepositoriesModel.RepositoriesModelItem>(){
         @SerializedName("url")
         var url: String?
     ) : Parcelable {
-        @SuppressLint("ParcelCreator")
         @Parcelize
         data class Owner(
             @SerializedName("avatar_url")

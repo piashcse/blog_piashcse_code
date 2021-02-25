@@ -1,0 +1,40 @@
+package com.piashcse.experiment.mvvm_hilt.ui.fragment
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.findNavController
+import com.piashcse.experiment.mvvm_hilt.databinding.FragmentDetailBinding
+import com.piashcse.experiment.mvvm_hilt.utils.errorLog
+import dagger.hilt.android.AndroidEntryPoint
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [DetailFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+@AndroidEntryPoint
+class DetailFragment : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = FragmentDetailBinding.inflate(inflater,container, false)
+        view.detail.setOnClickListener {
+            errorLog("detailFragment")
+            setFragmentResult("requestKey", bundleOf("bundleKey" to "great work"))
+            it?.findNavController()?.navigateUp()
+        }
+        return view.root
+    }
+
+}

@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object DataSourceModule {
+
     @Provides
     fun provideDataSource(dataRepository: DataRepository): DataSource {
         return DataSource(dataRepository)

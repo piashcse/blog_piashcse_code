@@ -2,31 +2,19 @@ package com.piashcse.experiment.mvvm_hilt.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
 import com.piashcse.experiment.mvvm_hilt.R
-import com.piashcse.experiment.mvvm_hilt.network.Status
-import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
+import com.piashcse.experiment.mvvm_hilt.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val vm: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        vm.getRepositoryList("20").observe(this, Observer {
-            when(it.status){
-               Status.LOADING->{
-
-                }
-                Status.SUCCESS->{
-
-                }
-                Status.ERROR->{
-
-                }
-            }
-        })
+        val bind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bind.root)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
     }
 }
