@@ -9,22 +9,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.R
+import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentHomeBinding
 import com.piashcse.experiment.mvvm_hilt.model.RepoSearchResponse
 import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
+import com.piashcse.experiment.mvvm_hilt.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.network.Status
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
 import com.piashcse.experiment.mvvm_hilt.ui.adapter.RepositoryAdapter
 import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
-import com.piashcse.experiment.mvvm_hilt.utils.errorLog
+import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 
 /**
@@ -48,8 +50,6 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        Timber.e("YO YO")
         initView()
 
         return binding.root
@@ -66,26 +66,33 @@ class HomeFragment : Fragment() {
             makeFlow(text.toString())
         }
         binding.button.setOnClickListener {
-            it?.findNavController()?.navigate(R.id.detailFragment)
+            it?.findNavController()
+                ?.navigate(R.id.detailFragment, bundleOf(AppConstants.DataTask.DATA to Address("Dhaka", "1205")))
         }
         binding.detailActivity.setOnClickListener {
-            resultContract.launch(Intent(activity, DetailActivity::class.java))
+            requireActivity().openActivity<DetailActivity>(AppConstants.DataTask.ADDRESS to Address("Dhaka", "1205"))
+        }
+
+        binding.detailActivityResult.setOnClickListener {
+            resultContract.launch(requireContext().openActivityResult<DetailActivity>())
         }
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             // We use a String here, but any type that can be put in a Bundle is supported
-            val result = bundle.getString("bundleKey")
+            val result = bundle.getParcelable<Address>("bundleKey")
             Toast.makeText(context, "$result", Toast.LENGTH_SHORT).show()
+            requireContext().showToast("$result")
 
             // Do something with the result
         }
+
 
     }
 
     private val resultContract =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
-                Toast.makeText(context, "result received", Toast.LENGTH_SHORT).show()
+                requireContext().showToast("result received")
             }
         }
 

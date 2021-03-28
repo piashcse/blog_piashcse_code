@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/root_view"
         tools:context=".ui.fragment.HomeFragment">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -26,7 +27,12 @@
                 android:id="@+id/detail_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="result activity"/>
+                android:text="detail activity"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/detail_activity_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="activity result"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"

@@ -3,12 +3,10 @@ package com.piashcse.experiment.mvvm_hilt.ui.viewmodel
 import androidx.lifecycle.*
 import com.piashcse.experiment.mvvm_hilt.datasource.DataSource
 import com.piashcse.experiment.mvvm_hilt.network.Resource
-import com.piashcse.experiment.mvvm_hilt.utils.errorLog
 import com.piashcse.experiment.mvvm_hilt.utils.jsonData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

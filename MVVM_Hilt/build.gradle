@@ -5,8 +5,8 @@ buildscript {
     ext.lifecycle_extensions_version = "2.2.0"
     ext.retrofit_version = "2.9.0"
     ext.okhttp_logging_version = "4.6.0"
-    ext.hilt_version = '2.31.2-alpha'
-    ext.hilt_extensions_version = "1.0.0-alpha03"
+    ext.hilt_version = '2.33-beta'
+    ext.hilt_extensions_version = "1.0.0-beta01"
     repositories {
         google()
         jcenter()

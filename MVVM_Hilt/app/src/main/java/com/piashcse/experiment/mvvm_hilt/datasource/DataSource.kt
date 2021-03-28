@@ -27,6 +27,5 @@ class DataSource @Inject constructor(private val repository: DataRepository) {
         } catch (e: Throwable) {
             emit(Resource.error(e))
         }
-
     }
 }

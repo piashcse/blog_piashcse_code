@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.HomeFragment"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Detail"
         tools:layout="@layout/fragment_detail" />
 </navigation>

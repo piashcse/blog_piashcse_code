@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.findNavController
+import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentDetailBinding
+import com.piashcse.experiment.mvvm_hilt.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.utils.errorLog
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
@@ -19,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
+    private lateinit var binding: FragmentDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -28,13 +32,19 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = FragmentDetailBinding.inflate(inflater,container, false)
-        view.detail.setOnClickListener {
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+        initView()
+        return binding.root
+    }
+
+    private fun initView() {
+        val data = arguments?.getParcelable<Address>(AppConstants.DataTask.DATA)
+        Timber.e("data : $data")
+        binding.detail.setOnClickListener {
             errorLog("detailFragment")
-            setFragmentResult("requestKey", bundleOf("bundleKey" to "great work"))
+            setFragmentResult("requestKey", bundleOf("bundleKey" to Address("Dhaka", "1205")))
             it?.findNavController()?.navigateUp()
         }
-        return view.root
     }
 
 }
