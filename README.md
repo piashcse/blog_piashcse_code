@@ -1,6 +1,6 @@
 # Android Code Sample 
 
-| Plugin | README |
+| Topic | Code |
 | ------ | ------ |
 | MVVM | [https://github.com/piashcse/blog_piashcse_code/tree/master/MVVM_Hilt] |
 | Instant App | [https://github.com/piashcse/blog_piashcse_code/tree/master/Instant_app_demo] |
