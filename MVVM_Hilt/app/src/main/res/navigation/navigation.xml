@@ -13,10 +13,26 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_roomDBFragment"
+            app:destination="@id/roomDBFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.DetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/roomDBFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.RoomDBFragment"
+        android:label="Local DB"
+        tools:layout="@layout/fragment_room_d_b">
+        <action
+            android:id="@+id/action_roomDBFragment_to_addUserFragment"
+            app:destination="@id/addUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addUserFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.AddUserFragment"
+        android:label="Add User" />
 </navigation>

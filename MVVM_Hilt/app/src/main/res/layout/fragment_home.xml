@@ -18,8 +18,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Search"/>
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button"
+                android:id="@+id/local_db"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Local Database"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/detail_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="detail fragment"/>
@@ -33,6 +40,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="activity result"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/data_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data Store"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"

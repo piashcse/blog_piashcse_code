@@ -7,4 +7,7 @@ object AppConstants {
         const val ADDRESS = "address"
         const val DATA = "data"
     }
+    object DefaultData{
+        const val STRING = ""
+    }
 }

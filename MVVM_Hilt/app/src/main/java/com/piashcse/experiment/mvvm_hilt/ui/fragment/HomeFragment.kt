@@ -13,20 +13,27 @@ import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentHomeBinding
+import com.piashcse.experiment.mvvm_hilt.datasource.local.DataStoreManager
 import com.piashcse.experiment.mvvm_hilt.model.RepoSearchResponse
 import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.model.user.Address
+import com.piashcse.experiment.mvvm_hilt.model.user.Geo
+import com.piashcse.experiment.mvvm_hilt.model.user.User
 import com.piashcse.experiment.mvvm_hilt.network.Status
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
 import com.piashcse.experiment.mvvm_hilt.ui.adapter.RepositoryAdapter
 import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 /**
@@ -39,6 +46,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val vm: MainViewModel by viewModels()
     private lateinit var repoAdapter: RepositoryAdapter
+    private lateinit var userDataStore: DataStoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +64,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView() {
+        userDataStore = DataStoreManager(requireContext())
         repoAdapter = RepositoryAdapter()
         binding.recycler.apply {
             layoutManager = LinearLayoutManager(context)
@@ -65,16 +74,36 @@ class HomeFragment : Fragment() {
         binding.search.doOnTextChanged { text, start, before, count ->
             makeFlow(text.toString())
         }
-        binding.button.setOnClickListener {
+        binding.localDb.setOnClickListener {
+            it?.findNavController()?.navigate(R.id.roomDBFragment)
+        }
+        binding.detailFragment.setOnClickListener {
             it?.findNavController()
-                ?.navigate(R.id.detailFragment, bundleOf(AppConstants.DataTask.DATA to Address("Dhaka", "1205")))
+                ?.navigate(
+                    R.id.detailFragment,
+                    bundleOf(AppConstants.DataTask.DATA to Address("Dhaka", "1205"))
+                )
         }
         binding.detailActivity.setOnClickListener {
-            requireActivity().openActivity<DetailActivity>(AppConstants.DataTask.ADDRESS to Address("Dhaka", "1205"))
+            requireActivity().openActivity<DetailActivity>(
+                AppConstants.DataTask.ADDRESS to Address(
+                    "Dhaka",
+                    "1205"
+                )
+            )
         }
 
         binding.detailActivityResult.setOnClickListener {
             resultContract.launch(requireContext().openActivityResult<DetailActivity>())
+        }
+
+        binding.dataStore.setOnClickListener {
+            lifecycleScope.launch {
+                userDataStore.storeObjectData(DataStoreManager.USER_NAME_KEY, Geo("1.2", "1.3"))
+                userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData().observe(viewLifecycleOwner,{
+                    Timber.e("serialize : $it")
+                })
+            }
         }
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->
