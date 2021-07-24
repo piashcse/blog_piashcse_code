@@ -39,9 +39,8 @@ class DetailFragment : Fragment() {
 
     private fun initView() {
         val data = arguments?.getParcelable<Address>(AppConstants.DataTask.DATA)
-        Timber.e("data : $data")
+        Timber.e("data received : $data")
         binding.detail.setOnClickListener {
-            errorLog("detailFragment")
             setFragmentResult("requestKey", bundleOf("bundleKey" to Address("Dhaka", "1205")))
             it?.findNavController()?.navigateUp()
         }

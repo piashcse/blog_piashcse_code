@@ -12,12 +12,13 @@ android {
 
     defaultConfig {
         applicationId "com.piashcse.experiment.mvvm_hilt"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
 }
 
@@ -91,5 +93,10 @@ dependencies {
     implementation  "androidx.datastore:datastore-core:$dataStoreVersion"
     implementation "androidx.datastore:datastore-preferences:$dataStoreVersion"
     implementation 'com.google.code.gson:gson:2.8.6'
+
+    def multidex_version = "2.0.1"
+    implementation "androidx.multidex:multidex:$multidex_version"
+
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
 
 }

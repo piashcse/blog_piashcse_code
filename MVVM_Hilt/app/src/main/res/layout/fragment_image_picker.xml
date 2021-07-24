@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.ImagePickerFragment">
+
+    <Button
+        android:id="@+id/image_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Image picker" />
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

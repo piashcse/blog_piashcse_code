@@ -35,4 +35,9 @@
         android:id="@+id/addUserFragment"
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.AddUserFragment"
         android:label="Add User" />
+    <fragment
+        android:id="@+id/imagePickerFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ImagePickerFragment"
+        tools:layout="@layout/fragment_image_picker" />
+
 </navigation>

@@ -2,6 +2,7 @@ package com.piashcse.experiment.mvvm_hilt.ui.fragment
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,7 +17,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentHomeBinding
@@ -55,7 +58,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         initView()
@@ -94,22 +97,26 @@ class HomeFragment : Fragment() {
         }
 
         binding.detailActivityResult.setOnClickListener {
-            resultContract.launch(requireContext().openActivityResult<DetailActivity>())
+            resultContract.launch(requireActivity().openActivityResult<DetailActivity>())
         }
 
         binding.dataStore.setOnClickListener {
             lifecycleScope.launch {
                 userDataStore.storeObjectData(DataStoreManager.USER_NAME_KEY, Geo("1.2", "1.3"))
-                userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData().observe(viewLifecycleOwner,{
-                    Timber.e("serialize : $it")
-                })
+                userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData()
+                    .observe(viewLifecycleOwner, {
+                        Timber.e("serialize : $it")
+                    })
             }
+        }
+
+        binding.imagePicker.setOnClickListener {
+            findNavController().navigate(R.id.imagePickerFragment)
         }
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             // We use a String here, but any type that can be put in a Bundle is supported
             val result = bundle.getParcelable<Address>("bundleKey")
-            Toast.makeText(context, "$result", Toast.LENGTH_SHORT).show()
             requireContext().showToast("$result")
 
             // Do something with the result

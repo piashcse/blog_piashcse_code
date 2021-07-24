@@ -43,16 +43,23 @@ fun View.hideKeyboard() {
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
 
-inline fun <reified T : Activity> Context.openActivity(vararg params: Pair<String, Any>) {
+inline fun <reified T : Activity> Activity.openActivity(vararg params: Pair<String, Any>) {
     val intent = Intent(this, T::class.java)
     intent.putExtras(*params)
     this.startActivity(intent)
+
 }
 
 // this extension function is for resultContract
-inline fun <reified T : Activity> Context.openActivityResult(vararg params: Pair<String, Any>): Intent {
+inline fun <reified T : Activity> Activity.openActivityResult(vararg params: Pair<String, Any>): Intent {
     val intent = Intent(this, T::class.java)
     return intent.putExtras(*params)
+}
+fun Activity.finishActivityResult(vararg params: Pair<String, Any>) {
+    val intent = Intent()
+    intent.putExtras(*params)
+    setResult(Activity.RESULT_OK, intent)
+    finish()
 }
 
 fun Intent.putExtras(vararg params: Pair<String, Any>): Intent {

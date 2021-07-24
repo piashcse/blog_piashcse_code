@@ -1,11 +1,11 @@
 package com.piashcse.experiment.mvvm_hilt
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class HiltApplication : Application() {
+class HiltApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
@@ -13,6 +13,4 @@ class HiltApplication : Application() {
         }
 
     }
-
-
 }

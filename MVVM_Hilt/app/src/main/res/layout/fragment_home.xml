@@ -46,6 +46,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Data Store"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/image_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Image picker"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
