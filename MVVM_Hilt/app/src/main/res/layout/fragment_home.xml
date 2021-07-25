@@ -52,6 +52,12 @@
                 android:layout_height="wrap_content"
                 android:text="Image picker"/>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/read_json"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Read Json"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"

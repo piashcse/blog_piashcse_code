@@ -114,6 +114,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.imagePickerFragment)
         }
 
+        binding.readJson.setOnClickListener {
+            findNavController().navigate(R.id.readJsonFragment)
+        }
+
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             // We use a String here, but any type that can be put in a Bundle is supported
             val result = bundle.getParcelable<Address>("bundleKey")

@@ -39,5 +39,10 @@
         android:id="@+id/imagePickerFragment"
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ImagePickerFragment"
         tools:layout="@layout/fragment_image_picker" />
+    <fragment
+        android:id="@+id/readJsonFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ReadJsonFragment"
+        android:label="fragment_read_json"
+        tools:layout="@layout/fragment_read_json" />
 
 </navigation>
