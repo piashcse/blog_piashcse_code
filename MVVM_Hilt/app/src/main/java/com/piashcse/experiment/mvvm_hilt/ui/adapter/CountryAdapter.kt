@@ -5,13 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.piashcse.experiment.mvvm_hilt.databinding.AdapterCountryItemLayoutBinding
 import com.piashcse.experiment.mvvm_hilt.model.country.CountryNameItem
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CountryAdapter : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
     private val items: ArrayList<CountryNameItem> = arrayListOf()
     var onItemClick: ((CountryNameItem) -> Unit)? = null
+    private val itemsCopies: ArrayList<CountryNameItem> = arrayListOf()
 
     fun addItems(newItems: List<CountryNameItem>) {
         items.addAll(newItems)
+        itemsCopies.addAll(newItems)
         notifyDataSetChanged()
     }
 
@@ -44,4 +48,27 @@ class CountryAdapter : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() 
     }
 
     override fun getItemCount() = items.size
+
+    fun filter(sequence: CharSequence?) {
+        val temp: ArrayList<CountryNameItem> = arrayListOf()
+        if (sequence.isNullOrEmpty().not()) {
+            for (s in itemsCopies) {
+                if (s.name.toLowerCase().contains(sequence!!)) {
+                    temp.add(s)
+                } else {
+                    for (code in s.callingCodes) {
+                        if (code.contains(sequence!!)) {
+                            temp.add(s)
+                        }
+                    }
+                }
+            }
+        } else {
+            temp.addAll(itemsCopies)
+        }
+        items.clear()
+        items.addAll(temp)
+        notifyDataSetChanged()
+        temp.clear()
+    }
 }
