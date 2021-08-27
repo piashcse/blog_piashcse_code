@@ -4,22 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.piashcse.experiment.mvvm_hilt.databinding.RepositoryItemBinding
-import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
+import com.piashcse.experiment.mvvm_hilt.model.Repository
 
 class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
-    private val items: ArrayList<RepositoriesModel.RepositoriesModelItem> = arrayListOf()
-    var onItemClick: ((RepositoriesModel.RepositoriesModelItem) -> Unit)? = null
+    private val items: MutableList<Repository> = arrayListOf()
+    var onItemClick: ((Repository) -> Unit)? = null
 
-    fun addItems(newItems: ArrayList<RepositoriesModel.RepositoriesModelItem>?) {
+    fun addItems(newItems: List<Repository>?, clearPreviousItem: Boolean = false) {
         newItems?.let {
-            items.addAll(newItems)
+            if (clearPreviousItem) {
+                items.clear()
+                items.addAll(newItems)
+            } else {
+                items.addAll(newItems)
+            }
+
             notifyDataSetChanged()
         }
     }
 
     inner class RepositoryViewHolder(val bind: RepositoryItemBinding) :
         RecyclerView.ViewHolder(bind.root) {
-        fun bind(item: RepositoriesModel.RepositoriesModelItem) {
+        fun bind(item: Repository) {
             bind.executePendingBindings()
             itemView.setOnClickListener {
                 onItemClick?.invoke(item)

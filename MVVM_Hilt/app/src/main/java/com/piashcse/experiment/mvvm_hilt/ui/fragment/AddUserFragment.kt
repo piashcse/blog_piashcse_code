@@ -35,14 +35,22 @@ class AddUserFragment : Fragment() {
     }
 
     private fun initView() {
-        binding.add.setOnClickListener {
-            vm.insertUser(User(0, binding.name.text.toString().capitalize(), binding.company.text.toString().capitalize()))
-            it.findNavController().popBackStack()
-            it.hideKeyboard()
-        }
-        binding.cancel.setOnClickListener {
-            it.findNavController().popBackStack()
-            it.hideKeyboard()
+        binding.apply {
+            add.setOnClickListener {
+                vm.insertUser(
+                    User(
+                        0,
+                        binding.name.text.toString().capitalize(),
+                        binding.company.text.toString().capitalize()
+                    )
+                )
+                it.findNavController().popBackStack()
+                it.hideKeyboard()
+            }
+            cancel.setOnClickListener {
+                it.findNavController().popBackStack()
+                it.hideKeyboard()
+            }
         }
     }
 

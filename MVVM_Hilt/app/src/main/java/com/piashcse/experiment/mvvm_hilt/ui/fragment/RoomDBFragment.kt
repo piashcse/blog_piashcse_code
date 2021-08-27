@@ -32,7 +32,7 @@ class RoomDBFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentRoomDBBinding.inflate(inflater, container, false)
         initView()
@@ -41,18 +41,20 @@ class RoomDBFragment : Fragment() {
 
     private fun initView() {
         userAdapter = UserAdapter()
-        binding.recycler.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = userAdapter
-            setHasFixedSize(true)
+        binding.apply {
+            add.setOnClickListener {
+                it.findNavController().navigate(R.id.addUserFragment)
+            }
+            recycler.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = userAdapter
+                setHasFixedSize(true)
+            }
         }
-        vm.getAllUser.observe(viewLifecycleOwner,{
+        vm.getAllUser.observe(viewLifecycleOwner, {
             userAdapter.differ.submitList(it.reversed())
         })
 
-        binding.add.setOnClickListener {
-            it.findNavController().navigate(R.id.addUserFragment)
-        }
 
     }
 }

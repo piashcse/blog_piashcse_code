@@ -48,7 +48,6 @@ import timber.log.Timber
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val vm: MainViewModel by viewModels()
-    private lateinit var repoAdapter: RepositoryAdapter
     private lateinit var userDataStore: DataStoreManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,54 +67,49 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
         userDataStore = DataStoreManager(requireContext())
-        repoAdapter = RepositoryAdapter()
-        binding.recycler.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = repoAdapter
-        }
-
-        binding.search.doOnTextChanged { text, start, before, count ->
-            makeFlow(text.toString())
-        }
-        binding.localDb.setOnClickListener {
-            it?.findNavController()?.navigate(R.id.roomDBFragment)
-        }
-        binding.detailFragment.setOnClickListener {
-            it?.findNavController()
-                ?.navigate(
+        binding.apply {
+            searchFlow.setOnClickListener {
+                findNavController().navigate(R.id.searchWithFlowFragment)
+            }
+            localDb.setOnClickListener {
+                findNavController().navigate(R.id.roomDBFragment)
+            }
+            detailFragment.setOnClickListener {
+                findNavController().navigate(
                     R.id.detailFragment,
                     bundleOf(AppConstants.DataTask.DATA to Address("Dhaka", "1205"))
                 )
-        }
-        binding.detailActivity.setOnClickListener {
-            requireActivity().openActivity<DetailActivity>(
-                AppConstants.DataTask.ADDRESS to Address(
-                    "Dhaka",
-                    "1205"
-                )
-            )
-        }
-
-        binding.detailActivityResult.setOnClickListener {
-            resultContract.launch(requireActivity().openActivityResult<DetailActivity>())
-        }
-
-        binding.dataStore.setOnClickListener {
-            lifecycleScope.launch {
-                userDataStore.storeObjectData(DataStoreManager.USER_NAME_KEY, Geo("1.2", "1.3"))
-                userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData()
-                    .observe(viewLifecycleOwner, {
-                        Timber.e("serialize : $it")
-                    })
             }
-        }
+            detailActivity.setOnClickListener {
+                requireActivity().openActivity<DetailActivity>(
+                    AppConstants.DataTask.ADDRESS to Address(
+                        "Dhaka",
+                        "1205"
+                    )
+                )
+            }
 
-        binding.imagePicker.setOnClickListener {
-            findNavController().navigate(R.id.imagePickerFragment)
-        }
+            detailActivityResult.setOnClickListener {
+                resultContract.launch(requireActivity().openActivityResult<DetailActivity>())
+            }
 
-        binding.readJson.setOnClickListener {
-            findNavController().navigate(R.id.readJsonFragment)
+            dataStore.setOnClickListener {
+                lifecycleScope.launch {
+                    userDataStore.storeObjectData(DataStoreManager.USER_NAME_KEY, Geo("1.2", "1.3"))
+                    userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData()
+                        .observe(viewLifecycleOwner, {
+                            Timber.e("serialize : $it")
+                        })
+                }
+            }
+
+            imagePicker.setOnClickListener {
+                findNavController().navigate(R.id.imagePickerFragment)
+            }
+
+            readJson.setOnClickListener {
+                findNavController().navigate(R.id.readJsonFragment)
+            }
         }
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->
@@ -136,34 +130,4 @@ class HomeFragment : Fragment() {
             }
         }
 
-    private fun apiCall(since: String) = vm.getRepositoryList(since).observe(viewLifecycleOwner, {
-        when (it.status) {
-            Status.LOADING -> {
-                errorLog("Loading..")
-            }
-            Status.SUCCESS -> {
-                errorLog(" Success ... ${it.data}")
-                val result = it.data as RepositoriesModel
-                repoAdapter.addItems(result)
-            }
-            Status.ERROR -> {
-                errorLog(" Failed ...${it.data}")
-            }
-        }
-    })
-
-    private fun makeFlow(since: String) = vm.makeFlow(since).observe(viewLifecycleOwner, {
-        when (it.status) {
-            Status.LOADING -> {
-                errorLog("Loading..")
-            }
-            Status.SUCCESS -> {
-                val result = it.data as RepoSearchResponse
-                errorLog(" Success ... $result")
-            }
-            Status.ERROR -> {
-                errorLog(" Failed ...${it.data}")
-            }
-        }
-    })
 }

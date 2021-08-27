@@ -13,55 +13,51 @@
             android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search"
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/search_flow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Search"/>
+                android:text="@string/search_coroutine_flow"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/local_db"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Local Database"/>
+                android:text="@string/local_database"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/detail_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="detail fragment"/>
+                android:text="@string/detail_fragment"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/detail_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="detail activity"/>
+                android:text="@string/detail_activity"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/detail_activity_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="activity result"/>
+                android:text="@string/activity_result"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/data_store"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data Store"/>
+                android:text="@string/data_store"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/image_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Image picker"/>
+                android:text="@string/image_picker"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/read_json"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Read Json"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:text="@string/read_json"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
 </layout>

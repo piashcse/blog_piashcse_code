@@ -44,5 +44,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ReadJsonFragment"
         android:label="fragment_read_json"
         tools:layout="@layout/fragment_read_json" />
+    <fragment
+        android:id="@+id/searchWithFlowFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.SearchWithFlowFragment"
+        android:label="fragment_search_with_flow"
+        tools:layout="@layout/fragment_search_with_flow" />
 
 </navigation>

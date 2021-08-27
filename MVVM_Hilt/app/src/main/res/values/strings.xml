@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">MVVM_Hilt</string>
-    <string name="search">Search</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+    <string name="search_coroutine_flow">Search coroutine Flow</string>
+    <string name="local_database">Local Database</string>
+    <string name="detail_fragment">detail fragment</string>
+    <string name="detail_activity">detail activity</string>
+    <string name="activity_result">activity result</string>
+    <string name="data_store">Data Store</string>
+    <string name="image_picker">Image picker</string>
+    <string name="read_json">Read Json</string>
 </resources>
