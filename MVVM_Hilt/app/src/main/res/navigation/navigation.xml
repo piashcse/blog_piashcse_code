@@ -49,5 +49,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.SearchWithFlowFragment"
         android:label="fragment_search_with_flow"
         tools:layout="@layout/fragment_search_with_flow" />
+    <fragment
+        android:id="@+id/viewPagerWithNestedRecyclerViewFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ViewPagerWithNestedRecyclerViewFragment"
+        android:label="fragment_view_pager_with_nested_recycler_view"
+        tools:layout="@layout/fragment_view_pager_with_nested_recycler_view" />
 
 </navigation>

@@ -58,6 +58,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/read_json"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/view_pager_with_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/viewpager_with_nested_recycler"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
 </layout>

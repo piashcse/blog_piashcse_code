@@ -98,6 +98,10 @@ class HomeFragment : Fragment() {
             readJson.setOnClickListener {
                 findNavController().navigate(R.id.readJsonFragment)
             }
+
+            viewPagerWithRecycler.setOnClickListener{
+                findNavController().navigate(R.id.viewPagerWithNestedRecyclerViewFragment)
+            }
         }
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->

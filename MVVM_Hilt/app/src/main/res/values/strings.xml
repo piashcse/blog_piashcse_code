@@ -10,4 +10,5 @@
     <string name="data_store">Data Store</string>
     <string name="image_picker">Image picker</string>
     <string name="read_json">Read Json</string>
+    <string name="viewpager_with_nested_recycler">ViewPager with nested recycler</string>
 </resources>
