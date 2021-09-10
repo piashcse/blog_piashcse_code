@@ -18,14 +18,10 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RoomDBFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class RoomDBFragment : Fragment() {
-    private lateinit var binding: FragmentRoomDBBinding
+    private var _binding: FragmentRoomDBBinding? = null
+    private val binding get() = requireNotNull(_binding) // or _binding!!
     private val vm: MainViewModel by viewModels()
     private lateinit var userAdapter: UserAdapter
 
@@ -34,7 +30,7 @@ class RoomDBFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentRoomDBBinding.inflate(inflater, container, false)
+        _binding = FragmentRoomDBBinding.inflate(inflater, container, false)
         initView()
         return binding.root
     }
@@ -55,6 +51,10 @@ class RoomDBFragment : Fragment() {
             userAdapter.differ.submitList(it.reversed())
         })
 
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

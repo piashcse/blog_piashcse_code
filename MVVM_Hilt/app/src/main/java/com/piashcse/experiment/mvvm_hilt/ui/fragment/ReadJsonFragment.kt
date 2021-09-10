@@ -13,14 +13,10 @@ import com.piashcse.experiment.mvvm_hilt.ui.adapter.CountryAdapter
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ReadJsonFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class ReadJsonFragment : Fragment() {
-    private lateinit var binding: FragmentReadJsonBinding
+    private var _binding: FragmentReadJsonBinding? = null
+    private val binding get() = requireNotNull(_binding) // _binding!!
     private val countryAdapter by lazy {
         CountryAdapter()
     }
@@ -30,7 +26,7 @@ class ReadJsonFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentReadJsonBinding.inflate(inflater, container, false)
+        _binding = FragmentReadJsonBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,6 +58,10 @@ class ReadJsonFragment : Fragment() {
         countryAdapter.addItems(
             requireActivity().assets.readAssetsFile("country.json").fromPrettyJson<CountryName>()
         )
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

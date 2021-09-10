@@ -18,14 +18,10 @@ import com.piashcse.experiment.mvvm_hilt.utils.errorLog
 import dagger.hilt.android.AndroidEntryPoint
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchWithFlowFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class SearchWithFlowFragment : Fragment() {
-    private lateinit var binding: FragmentSearchWithFlowBinding
+    private var _binding: FragmentSearchWithFlowBinding? = null
+    private val binding get() = requireNotNull(_binding) //or _binding!!
     private val vm: MainViewModel by viewModels()
     private val repoAdapter: RepositoryAdapter by lazy {
         RepositoryAdapter()
@@ -36,7 +32,7 @@ class SearchWithFlowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentSearchWithFlowBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchWithFlowBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -89,4 +85,8 @@ class SearchWithFlowFragment : Fragment() {
         }
     })
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

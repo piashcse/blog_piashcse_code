@@ -1,37 +1,25 @@
 package com.piashcse.experiment.mvvm_hilt.ui.fragment
 
 import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentHomeBinding
 import com.piashcse.experiment.mvvm_hilt.datasource.local.DataStoreManager
-import com.piashcse.experiment.mvvm_hilt.model.RepoSearchResponse
-import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.model.user.Geo
-import com.piashcse.experiment.mvvm_hilt.model.user.User
-import com.piashcse.experiment.mvvm_hilt.network.Status
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
-import com.piashcse.experiment.mvvm_hilt.ui.adapter.RepositoryAdapter
 import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -95,7 +83,7 @@ class HomeFragment : Fragment() {
 
             dataStore.setOnClickListener {
                 lifecycleScope.launch {
-                    userDataStore.storeObjectData(DataStoreManager.USER_NAME_KEY, Geo("1.2", "1.3"))
+                    userDataStore.storeObjectAsJson(DataStoreManager.USER_NAME_KEY, Geo("1.2", "1.3"))
                     userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData()
                         .observe(viewLifecycleOwner, {
                             Timber.e("serialize : $it")

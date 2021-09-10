@@ -2,14 +2,16 @@ package com.piashcse.experiment.mvvm_hilt.datasource.local
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
+import com.piashcse.experiment.mvvm_hilt.utils.fromPrettyJson
+import com.piashcse.experiment.mvvm_hilt.utils.fromPrettyJsonList
+import com.piashcse.experiment.mvvm_hilt.utils.toPrettyJson
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import java.io.IOException
 
 
 class DataStoreManager(var context: Context) {
@@ -28,9 +30,11 @@ class DataStoreManager(var context: Context) {
 
 
     // store data as object
-    suspend fun <T> storeObjectData(key: Preferences.Key<String>, value: T) {
+    suspend inline fun <reified T> storeObjectAsJson(key: Preferences.Key<String>, value: T) {
         dataStore.edit { preferences ->
-            preferences[key] = serializeData(value)
+            if (value != null) {
+                preferences[key] = value.toPrettyJson()
+            }
         }
     }
 
@@ -75,40 +79,104 @@ class DataStoreManager(var context: Context) {
     // flow comes from the kotlin coroutine
 
     // get data as object
-    inline fun <reified T> getObjectData(key: Preferences.Key<String>): Flow<T> =
-        dataStore.data.map {
-            deSerializeData(it[key] ?: "")
+    inline fun <reified T: Any> getObjectData(key: Preferences.Key<String>): Flow<T> =
+        dataStore.data.catch {exception->
+            // dataStore.data throws an IOException if it can't read the data
+            if (exception is IOException) { // 2
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }.map {
+            (it[key] ?: "").fromPrettyJson()
+        }
+
+    // get data as object
+    inline fun <reified T: Any> getObjectArray(key: Preferences.Key<String>): Flow<List<T>> =
+        dataStore.data.catch {exception->
+            // dataStore.data throws an IOException if it can't read the data
+            if (exception is IOException) { // 2
+                emit(emptyPreferences())
+            } else {
+                throw exception
+            }
+        }.map {
+            (it[key] ?: "").fromPrettyJsonList()
         }
 
     // get primitives data
-    fun getStringData(key: Preferences.Key<String>): Flow<String> = dataStore.data.map {
+    fun getStringData(key: Preferences.Key<String>): Flow<String> = dataStore.data.catch {exception->
+        // dataStore.data throws an IOException if it can't read the data
+        if (exception is IOException) { // 2
+            emit(emptyPreferences())
+        } else {
+            throw exception
+        }
+    }.map {
         it[key] ?: ""
     }
 
-    fun getIntData(key: Preferences.Key<Int>): Flow<Int> = dataStore.data.map {
+    fun getIntData(key: Preferences.Key<Int>): Flow<Int> = dataStore.data.catch {exception->
+        // dataStore.data throws an IOException if it can't read the data
+        if (exception is IOException) { // 2
+            emit(emptyPreferences())
+        } else {
+            throw exception
+        }
+    }.map {
         it[key] ?: 0
     }
 
-    fun getDoubleData(key: Preferences.Key<Double>): Flow<Double> = dataStore.data.map {
+    fun getDoubleData(key: Preferences.Key<Double>): Flow<Double> = dataStore.data.catch {exception->
+        // dataStore.data throws an IOException if it can't read the data
+        if (exception is IOException) { // 2
+            emit(emptyPreferences())
+        } else {
+            throw exception
+        }
+    }.map {
         it[key] ?: 0.0
     }
 
-    fun getFloatData(key: Preferences.Key<Float>): Flow<Float> = dataStore.data.map {
+    fun getFloatData(key: Preferences.Key<Float>): Flow<Float> = dataStore.data.catch {exception->
+        // dataStore.data throws an IOException if it can't read the data
+        if (exception is IOException) { // 2
+            emit(emptyPreferences())
+        } else {
+            throw exception
+        }
+    }.map {
         it[key] ?: 0.0f
     }
 
-    fun getLongData(key: Preferences.Key<Long>): Flow<Long> = dataStore.data.map {
+    fun getLongData(key: Preferences.Key<Long>): Flow<Long> = dataStore.data.catch {exception->
+        // dataStore.data throws an IOException if it can't read the data
+        if (exception is IOException) { // 2
+            emit(emptyPreferences())
+        } else {
+            throw exception
+        }
+    }.map {
         it[key] ?: 0
     }
 
-    fun getBooleanData(key: Preferences.Key<Boolean>): Flow<Boolean> = dataStore.data.map {
+    fun getBooleanData(key: Preferences.Key<Boolean>): Flow<Boolean> = dataStore.data.catch {exception->
+        // dataStore.data throws an IOException if it can't read the data
+        if (exception is IOException) { // 2
+            emit(emptyPreferences())
+        } else {
+            throw exception
+        }
+    }.map {
         it[key] ?: false
     }
 
 
-    private fun <T> serializeData(data: T): String {
+   /* private fun <T> serializeData(data: T): String {
         return Gson().toJson(data)
-    }
+    }*/
+    inline fun <reified T : Any> T.serializeData() : String = Gson().toJson(this, T::class.java)
+
 
     inline fun <reified T> deSerializeData(data: String): T {
         return Gson().fromJson(data, T::class.java)

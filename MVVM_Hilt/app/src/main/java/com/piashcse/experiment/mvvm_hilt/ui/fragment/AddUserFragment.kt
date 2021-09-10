@@ -14,14 +14,10 @@ import com.piashcse.experiment.mvvm_hilt.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddUserFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class AddUserFragment : Fragment() {
-    private lateinit var binding: FragmentAddUserBinding
+    private var _binding: FragmentAddUserBinding? = null
+    private val binding get() = requireNotNull(_binding) // or _binding!!
     private val vm: MainViewModel by viewModels()
 
     override fun onCreateView(
@@ -29,7 +25,7 @@ class AddUserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentAddUserBinding.inflate(inflater, container, false)
+        _binding = FragmentAddUserBinding.inflate(inflater, container, false)
         initView()
         return binding.root
     }
@@ -54,4 +50,8 @@ class AddUserFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -22,17 +22,15 @@ import timber.log.Timber
  */
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
-    private lateinit var binding: FragmentDetailBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = requireNotNull(_binding) // or _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentDetailBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
         initView()
         return binding.root
     }
@@ -46,4 +44,8 @@ class DetailFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
