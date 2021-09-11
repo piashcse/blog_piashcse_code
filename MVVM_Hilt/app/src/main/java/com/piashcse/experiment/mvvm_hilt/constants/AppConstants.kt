@@ -10,4 +10,8 @@ object AppConstants {
     object DefaultData{
         const val STRING = ""
     }
+    object ViewType{
+        const val LIST_VIEW_TYPE  = 0
+        const val GRID_VIEW_TYPE = 1
+    }
 }

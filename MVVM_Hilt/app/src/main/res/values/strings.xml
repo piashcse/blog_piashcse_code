@@ -11,4 +11,8 @@
     <string name="image_picker">Image picker</string>
     <string name="read_json">Read Json</string>
     <string name="viewpager_with_nested_recycler">ViewPager with nested recycler</string>
+    <string name="title">Title</string>
+    <string name="price">500.0</string>
+    <string name="is_stock">available</string>
+    <string name="view_change">viewChange</string>
 </resources>

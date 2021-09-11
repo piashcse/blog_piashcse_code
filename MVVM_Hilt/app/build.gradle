@@ -19,6 +19,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        // for avoiding waring for app:srcCompat
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

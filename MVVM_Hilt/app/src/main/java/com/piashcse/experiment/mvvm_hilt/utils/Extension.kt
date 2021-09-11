@@ -3,6 +3,7 @@ package com.piashcse.experiment.mvvm_hilt.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -36,6 +37,14 @@ fun View.hide() {
 
 fun View.show() {
     this.visibility = View.VISIBLE
+}
+
+fun Int.dpToPx(): Int {
+    return (this * Resources.getSystem().displayMetrics.density).toInt()
+}
+
+fun Int.pixelToDp(): Int {
+    return (this / Resources.getSystem().displayMetrics.density).toInt()
 }
 
 fun View.hideKeyboard() {
