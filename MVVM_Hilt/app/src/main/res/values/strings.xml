@@ -15,4 +15,5 @@
     <string name="price">500.0</string>
     <string name="is_stock">available</string>
     <string name="view_change">viewChange</string>
+    <string name="expandable_recyclerview">Expandable recyclerView</string>
 </resources>

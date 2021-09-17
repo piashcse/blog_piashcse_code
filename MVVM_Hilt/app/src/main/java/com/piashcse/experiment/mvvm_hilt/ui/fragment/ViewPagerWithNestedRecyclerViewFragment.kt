@@ -33,7 +33,6 @@ class ViewPagerWithNestedRecyclerViewFragment : Fragment() {
             container,
             false
         )
-
         return binding.root
     }
 

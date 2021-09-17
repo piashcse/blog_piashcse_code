@@ -34,23 +34,23 @@ import timber.log.Timber
  */
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = requireNotNull(_binding)
     private val vm: MainViewModel by viewModels()
     private lateinit var userDataStore: DataStoreManager
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        initView()
-
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
     }
 
     private fun initView() {
@@ -83,7 +83,10 @@ class HomeFragment : Fragment() {
 
             dataStore.setOnClickListener {
                 lifecycleScope.launch {
-                    userDataStore.storeObjectAsJson(DataStoreManager.USER_NAME_KEY, Geo("1.2", "1.3"))
+                    userDataStore.storeObjectAsJson(
+                        DataStoreManager.USER_NAME_KEY,
+                        Geo("1.2", "1.3")
+                    )
                     userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData()
                         .observe(viewLifecycleOwner, {
                             Timber.e("serialize : $it")
@@ -99,8 +102,11 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.readJsonFragment)
             }
 
-            viewPagerWithRecycler.setOnClickListener{
+            viewPagerWithRecycler.setOnClickListener {
                 findNavController().navigate(R.id.viewPagerWithNestedRecyclerViewFragment)
+            }
+            expandableRecyclerveiw.setOnClickListener {
+                findNavController().navigate(R.id.expandableRecyclerViewFragment)
             }
         }
 
@@ -121,5 +127,10 @@ class HomeFragment : Fragment() {
                 requireContext().showToast("result received")
             }
         }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

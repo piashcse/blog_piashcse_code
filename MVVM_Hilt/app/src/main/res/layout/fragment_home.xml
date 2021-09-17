@@ -63,6 +63,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/viewpager_with_nested_recycler"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/expandable_recyclerveiw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/expandable_recyclerview"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </FrameLayout>
 </layout>

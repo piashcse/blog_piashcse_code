@@ -26,8 +26,13 @@ class AddUserFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentAddUserBinding.inflate(inflater, container, false)
-        initView()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+
     }
 
     private fun initView() {
