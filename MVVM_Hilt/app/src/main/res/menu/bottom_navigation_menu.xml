@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/detailFragmentBottom"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_24"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/imagePickerFragmentBottom"
+        android:enabled="true"
+        android:icon="@drawable/ic_music_note_24"
+        android:title="@string/music"/>
+    <item
+        android:id="@+id/expandableRecyclerViewFragmentBottom"
+        android:enabled="true"
+        android:icon="@drawable/ic_article_24"
+        android:title="@string/article"/>
+</menu>

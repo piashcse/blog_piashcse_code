@@ -11,8 +11,9 @@ import com.piashcse.experiment.mvvm_hilt.model.expandable.Child
 import com.piashcse.experiment.mvvm_hilt.model.expandable.Item
 import com.piashcse.experiment.mvvm_hilt.model.expandable.Parent
 import com.piashcse.experiment.mvvm_hilt.ui.adapter.ExpandableCategoryAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ExpandableRecyclerViewFragment : Fragment() {
     private var _binding: FragmentExpandableRecyclerViewBinding? = null
     private val binding get() = requireNotNull(_binding) // or _binding!!

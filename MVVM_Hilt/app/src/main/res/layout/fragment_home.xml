@@ -3,72 +3,87 @@
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/root_view"
         tools:context=".ui.fragment.HomeFragment">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/search_flow"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/search_coroutine_flow"/>
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/local_db"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/local_database"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/search_flow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_coroutine_flow" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/detail_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/detail_fragment"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/detail_activity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/detail_activity"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/detail_activity_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/activity_result"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/local_db"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/local_database" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/data_store"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/data_store"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/image_picker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/image_picker"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/detail_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_fragment" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/read_json"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/read_json"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/view_pager_with_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/viewpager_with_nested_recycler"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/detail_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_activity" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/expandable_recyclerveiw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/expandable_recyclerview"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/detail_activity_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_result" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/data_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/data_store" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/image_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/image_picker" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/read_json"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/read_json" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/view_pager_with_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/viewpager_with_nested_recycler" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/expandable_recyclerveiw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/expandable_recyclerview" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bottom_navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bottom_navigation" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </ScrollView>
     </FrameLayout>
 </layout>

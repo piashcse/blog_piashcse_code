@@ -43,7 +43,6 @@ class ViewPagerWithNestedRecyclerViewFragment : Fragment() {
 
     private fun initView() {
         binding.apply {
-
             viewPager.apply {
                 adapter = parentAdapter
                 parentAdapter.addItems(generateData())

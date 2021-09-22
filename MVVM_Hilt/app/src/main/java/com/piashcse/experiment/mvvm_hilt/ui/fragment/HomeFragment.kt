@@ -108,6 +108,9 @@ class HomeFragment : Fragment() {
             expandableRecyclerveiw.setOnClickListener {
                 findNavController().navigate(R.id.expandableRecyclerViewFragment)
             }
+            bottomNavigation.setOnClickListener {
+                findNavController().navigate(R.id.bottomNavigationFragment)
+            }
         }
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->

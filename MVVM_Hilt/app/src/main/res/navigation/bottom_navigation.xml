@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/detailFragmentBottom">
+
+    <fragment
+        android:id="@+id/detailFragmentBottom"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.DetailFragment"
+        android:label="DetailFragment" />
+    <fragment
+        android:id="@+id/expandableRecyclerViewFragmentBottom"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ExpandableRecyclerViewFragment"
+        android:label="fragment_expandable_recycler_view"
+        tools:layout="@layout/fragment_expandable_recycler_view" />
+    <fragment
+        android:id="@+id/imagePickerFragmentBottom"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ImagePickerFragment"
+        android:label="fragment_image_picker"
+        tools:layout="@layout/fragment_image_picker" />
+
+</navigation>

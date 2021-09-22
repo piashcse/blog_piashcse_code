@@ -59,5 +59,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ExpandableRecyclerViewFragment"
         android:label="Expandable recyclerVview"
         tools:layout="@layout/fragment_expandable_recycler_view" />
+    <fragment
+        android:id="@+id/bottomNavigationFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.BottomNavigationFragment"
+        android:label="Bottom navigation"
+        tools:layout="@layout/fragment_bottom_navigation" />
 
 </navigation>
