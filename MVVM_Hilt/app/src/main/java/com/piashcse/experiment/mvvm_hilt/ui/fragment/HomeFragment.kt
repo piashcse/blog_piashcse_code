@@ -20,6 +20,7 @@ import com.piashcse.experiment.mvvm_hilt.datasource.local.DataStoreManager
 import com.piashcse.experiment.mvvm_hilt.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.model.user.Geo
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
+import com.piashcse.experiment.mvvm_hilt.ui.common.BottomSheetRound
 import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -110,6 +111,14 @@ class HomeFragment : Fragment() {
             }
             bottomNavigation.setOnClickListener {
                 findNavController().navigate(R.id.bottomNavigationFragment)
+            }
+
+            googleLogin.setOnClickListener {
+                findNavController().navigate(R.id.googleLoginFragment)
+            }
+
+            bottomSheet.setOnClickListener {
+                BottomSheetRound().show(childFragmentManager, AppConstants.Dialog.DIALOG_TAG)
             }
         }
 

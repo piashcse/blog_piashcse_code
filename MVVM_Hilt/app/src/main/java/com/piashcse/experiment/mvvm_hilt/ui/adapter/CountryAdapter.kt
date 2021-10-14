@@ -53,7 +53,7 @@ class CountryAdapter : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() 
         val temp: ArrayList<CountryNameItem> = arrayListOf()
         if (sequence.isNullOrEmpty().not()) {
             for (s in itemsCopies) {
-                if (s.name.toLowerCase().contains(sequence!!)) {
+                if (s.name.lowercase().contains(sequence!!)) {
                     temp.add(s)
                 } else {
                     for (code in s.callingCodes) {

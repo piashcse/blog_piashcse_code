@@ -10,4 +10,5 @@
     <color name="background_default">#F8F8F8</color>
     <color name="parent_divider_color">#000930</color>
     <color name="sender_bubble_text_color">#387CF4</color>
+    <color name="black_40">#99000000</color>
 </resources>

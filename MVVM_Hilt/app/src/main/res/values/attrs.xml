@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="dimension" name="top_left_corner_radius"/>
+    <attr format="dimension" name="top_right_corner_radius"/>
+    <attr format="dimension" name="bottom_right_corner_radius"/>
+    <attr format="dimension" name="bottom_left_corner_radius"/>
+</resources>

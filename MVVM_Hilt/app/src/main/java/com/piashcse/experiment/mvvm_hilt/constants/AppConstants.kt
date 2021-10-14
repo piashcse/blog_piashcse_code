@@ -14,4 +14,7 @@ object AppConstants {
         const val LIST_VIEW_TYPE  = 0
         const val GRID_VIEW_TYPE = 1
     }
+    object Dialog{
+       const val DIALOG_TAG = "dialog"
+    }
 }

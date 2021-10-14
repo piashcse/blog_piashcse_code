@@ -83,6 +83,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/bottom_navigation" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/google_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/google_login" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/bottom_sheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bottom_sheet" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </ScrollView>
     </FrameLayout>

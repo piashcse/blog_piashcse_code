@@ -20,4 +20,6 @@
     <string name="music">Music</string>
     <string name="article">Article</string>
     <string name="bottom_navigation">Bottom Navigation</string>
+    <string name="google_login">google login</string>
+    <string name="bottom_sheet">bottom sheet</string>
 </resources>

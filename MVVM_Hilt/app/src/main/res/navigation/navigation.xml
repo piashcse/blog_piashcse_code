@@ -64,5 +64,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.BottomNavigationFragment"
         android:label="Bottom navigation"
         tools:layout="@layout/fragment_bottom_navigation" />
+    <fragment
+        android:id="@+id/googleLoginFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.GoogleLoginFragment"
+        android:label="fragment_google_login"
+        tools:layout="@layout/fragment_google_login" />
 
 </navigation>
