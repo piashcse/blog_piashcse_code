@@ -110,6 +110,3 @@ dependencies {
 
     implementation 'com.jcminarro:RoundKornerLayouts:0.4.0'
 }
-kapt {
-    correctErrorTypes true
-}
