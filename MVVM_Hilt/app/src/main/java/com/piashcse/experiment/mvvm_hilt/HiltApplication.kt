@@ -11,6 +11,5 @@ class HiltApplication : MultiDexApplication() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-
     }
 }

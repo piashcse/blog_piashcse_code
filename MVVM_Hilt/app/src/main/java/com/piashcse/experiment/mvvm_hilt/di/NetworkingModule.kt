@@ -1,7 +1,7 @@
 package com.piashcse.experiment.mvvm_hilt.di
 
 import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
-import com.piashcse.experiment.mvvm_hilt.network.ApiService
+import com.piashcse.experiment.mvvm_hilt.datasource.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

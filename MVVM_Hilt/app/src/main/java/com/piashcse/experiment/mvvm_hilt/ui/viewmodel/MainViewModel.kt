@@ -3,6 +3,8 @@ package com.piashcse.experiment.mvvm_hilt.ui.viewmodel
 import androidx.lifecycle.*
 import com.piashcse.experiment.mvvm_hilt.datasource.local.User
 import com.piashcse.experiment.mvvm_hilt.datasource.local.UserDao
+import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
+import com.piashcse.experiment.mvvm_hilt.network.DataState
 import com.piashcse.experiment.mvvm_hilt.network.Resource
 import com.piashcse.experiment.mvvm_hilt.repository.DataRepository
 import com.piashcse.experiment.mvvm_hilt.utils.jsonData
@@ -10,12 +12,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repo: DataRepository, private val db: UserDao) : ViewModel() {
-    var userLiveData =  MutableLiveData<List<User>>()
+class MainViewModel @Inject constructor(private val repo: DataRepository, private val db: UserDao) :
+    ViewModel() {
+
+    val userLiveData = MutableLiveData<List<User>>()
+    private val _repositoryResponse: MutableLiveData<DataState<RepositoriesModel>> =
+        MutableLiveData()
+    private val repositoryResponse: LiveData<DataState<RepositoriesModel>>
+        get() = _repositoryResponse
+
     fun getRepositoryList(since: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading())
         try {
@@ -44,14 +52,19 @@ class MainViewModel @Inject constructor(private val repo: DataRepository, privat
             }
     }
 
-
     val getAllUser = db.getAll().asLiveData()
-
-
 
     fun insertUser(user: User) {
         viewModelScope.launch {
             db.insertAll(user)
+        }
+    }
+
+    fun githubRepositories(since: String) {
+        viewModelScope.launch {
+            repo.githubRepositories(since).onEach {
+                _repositoryResponse.value = it
+            }.launchIn(viewModelScope)
         }
     }
 
