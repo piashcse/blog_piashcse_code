@@ -18,4 +18,9 @@ object AppConstants {
     object Dialog{
        const val DIALOG_TAG = "dialog"
     }
+    object LOCATION{
+        const val UPDATE_INTERVAL = 1000 * 60L // 1 min
+        const val FASTEST_UPDATE_INTERVAL = 2000L // 2 second
+        const val MAX_WAIT_TIME = 60 * 1000L // 1 min
+    }
 }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.fragment.DetailFragment">
 
         <!-- TODO: Update blank fragment layout -->
@@ -12,5 +13,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Detail fragment" />
-    </FrameLayout>
+        <Button
+            android:id="@+id/apiCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apicall" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -120,6 +120,9 @@ class HomeFragment : Fragment() {
             bottomSheet.setOnClickListener {
                 BottomSheetRound().show(childFragmentManager, AppConstants.Dialog.DIALOG_TAG)
             }
+            gpsLocation.setOnClickListener {
+                findNavController().navigate(R.id.gpsLocationFragment)
+            }
         }
 
         setFragmentResultListener("requestKey") { requestKey, bundle ->

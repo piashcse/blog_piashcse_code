@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentDetailBinding
 import com.piashcse.experiment.mvvm_hilt.model.user.Address
+import com.piashcse.experiment.mvvm_hilt.network.DataState
+import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
 import com.piashcse.experiment.mvvm_hilt.utils.errorLog
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -22,6 +25,7 @@ import timber.log.Timber
  */
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
+    private val vm: MainViewModel by viewModels()
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = requireNotNull(_binding) // or _binding!!
 
@@ -45,6 +49,22 @@ class DetailFragment : Fragment() {
         binding.detail.setOnClickListener {
             setFragmentResult("requestKey", bundleOf("bundleKey" to Address("Dhaka", "1205")))
             it?.findNavController()?.navigateUp()
+        }
+        binding.apiCall.setOnClickListener {
+            vm.githubRepositories("")
+        }
+        vm.repositoryResponse.observe(this) {
+            when (it) {
+                is DataState.Loading -> {
+                    Timber.e("Loading..")
+                }
+                is DataState.Success -> {
+                    Timber.e("Success..")
+                }
+                is DataState.Error -> {
+                    Timber.e("ERRor..")
+                }
+            }
         }
     }
 

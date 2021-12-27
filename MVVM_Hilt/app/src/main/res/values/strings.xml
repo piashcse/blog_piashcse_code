@@ -22,4 +22,8 @@
     <string name="bottom_navigation">Bottom Navigation</string>
     <string name="google_login">google login</string>
     <string name="bottom_sheet">bottom sheet</string>
+    <string name="gps_location_with_permission">GPS location with permission</string>
+    <string name="ok">ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="permission_detail">For getting current location please give the location permission</string>
 </resources>

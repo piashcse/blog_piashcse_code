@@ -21,7 +21,7 @@ class MainViewModel @Inject constructor(private val repo: DataRepository, privat
     val userLiveData = MutableLiveData<List<User>>()
     private val _repositoryResponse: MutableLiveData<DataState<RepositoriesModel>> =
         MutableLiveData()
-    private val repositoryResponse: LiveData<DataState<RepositoriesModel>>
+    val repositoryResponse: LiveData<DataState<RepositoriesModel>>
         get() = _repositoryResponse
 
     fun getRepositoryList(since: String) = liveData(Dispatchers.IO) {

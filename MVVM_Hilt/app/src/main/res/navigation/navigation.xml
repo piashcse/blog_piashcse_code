@@ -69,5 +69,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.GoogleLoginFragment"
         android:label="fragment_google_login"
         tools:layout="@layout/fragment_google_login" />
+    <fragment
+        android:id="@+id/gpsLocationFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.GPSLocationFragment"
+        android:label="fragment_g_p_s_location"
+        tools:layout="@layout/fragment_g_p_s_location" />
 
 </navigation>
