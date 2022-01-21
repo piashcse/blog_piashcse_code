@@ -24,13 +24,13 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:background="@android:color/transparent"
-               android:hint="Name"/>
+               android:hint="@string/name"/>
            <com.google.android.material.textfield.TextInputEditText
                android:id="@+id/company"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:background="@android:color/transparent"
-               android:hint="Company"/>
+               android:hint="@string/company"/>
 
            <LinearLayout
                android:layout_width="match_parent"
@@ -43,14 +43,14 @@
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:layout_marginEnd="5dp"
-                   android:text="Cancel"/>
+                   android:text="@string/cancel"/>
                <com.google.android.material.button.MaterialButton
                    android:id="@+id/add"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_weight="1"
                    android:layout_marginStart="5dp"
-                   android:text="Add"/>
+                   android:text="@string/add"/>
            </LinearLayout>
        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.cardview.widget.CardView>

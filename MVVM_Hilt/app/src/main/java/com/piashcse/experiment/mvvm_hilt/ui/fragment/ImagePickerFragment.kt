@@ -8,8 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import com.github.dhaval2404.imagepicker.ImagePicker
-import com.piashcse.experiment.mvvm_hilt.R
+import com.github.drjacky.imagepicker.ImagePicker
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentImagePickerBinding
 import com.piashcse.experiment.mvvm_hilt.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,13 +35,13 @@ class ImagePickerFragment : Fragment() {
 
     private fun initView() {
         binding.imagePicker.setOnClickListener {
-            ImagePicker.with(this)
+            ImagePicker.with(requireActivity())
                 // Crop Square image
                 .galleryOnly()
                 .cropSquare()
                 // Image resolution will be less than 512 x 512
                 .maxResultSize(200, 200)
-                .createIntent { intent ->
+                .createIntentFromDialog { intent ->
                     resultContract.launch(intent)
                 }
         }

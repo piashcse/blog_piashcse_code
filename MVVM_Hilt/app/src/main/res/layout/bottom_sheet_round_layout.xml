@@ -5,23 +5,26 @@
     android:layout_height="match_parent"
     android:background="@color/black_40"
     android:orientation="vertical">
+
     <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@color/white"
         android:orientation="vertical"
+        android:padding="16dp"
         app:top_left_corner_radius="8dp"
         app:top_right_corner_radius="8dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/title"/>
+            android:text="@string/title" />
+
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/article"/>
+            android:text="@string/article" />
     </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

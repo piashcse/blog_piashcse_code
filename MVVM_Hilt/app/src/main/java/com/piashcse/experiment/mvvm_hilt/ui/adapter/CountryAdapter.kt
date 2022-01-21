@@ -57,7 +57,7 @@ class CountryAdapter : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() 
                     temp.add(s)
                 } else {
                     for (code in s.callingCodes) {
-                        if (code.contains(sequence!!)) {
+                        if (code.contains(sequence)) {
                             temp.add(s)
                         }
                     }

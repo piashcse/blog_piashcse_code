@@ -14,15 +14,9 @@ import com.piashcse.experiment.mvvm_hilt.databinding.FragmentDetailBinding
 import com.piashcse.experiment.mvvm_hilt.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.network.DataState
 import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
-import com.piashcse.experiment.mvvm_hilt.utils.errorLog
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
     private val vm: MainViewModel by viewModels()

@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,23 +20,16 @@ import com.piashcse.experiment.mvvm_hilt.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.model.user.Geo
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
 import com.piashcse.experiment.mvvm_hilt.ui.common.BottomSheetRound
-import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = requireNotNull(_binding)
-    private val vm: MainViewModel by viewModels()
     private lateinit var userDataStore: DataStoreManager
 
     override fun onCreateView(

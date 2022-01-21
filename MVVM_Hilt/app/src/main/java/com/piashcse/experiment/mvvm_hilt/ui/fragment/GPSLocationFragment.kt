@@ -102,6 +102,18 @@ class GPSLocationFragment : Fragment() {
             object : LocationCallback() {
                 override fun onLocationResult(locationResult: LocationResult) {
                     super.onLocationResult(locationResult)
+                    binding.apply {
+                        if (isAdded){
+                            lat.text = resources.getString(
+                                R.string.lat,
+                                locationResult.lastLocation.latitude.toString()
+                            )
+                            lon.text = resources.getString(
+                                R.string.lon,
+                                locationResult.lastLocation.longitude.toString()
+                            )
+                        }
+                    }
                     Timber.e("location : ${locationResult.locations}")
                 }
             },

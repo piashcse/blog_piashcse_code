@@ -15,6 +15,3 @@ inline fun <reified T : Any> String.fromPrettyJsonList() : MutableList <T> = whe
     true -> Gson().fromJson(this, object : TypeToken<MutableList<T>>() {}.type)
     false -> mutableListOf()
 }
-// Read json file from assets
-fun AssetManager.readAssetsFile(fileName: String): String =
-    open(fileName).bufferedReader().use { it.readText() }

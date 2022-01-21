@@ -6,13 +6,12 @@ import android.net.Network
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.google.android.material.snackbar.Snackbar
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         val bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
         actionBar?.setDisplayHomeAsUpEnabled(true)
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
 
         alertDialog = android.app.AlertDialog.Builder(this).setCancelable(false)
-            .setMessage("Network connection is not available").create()
+            .setMessage(getString(R.string.network_connection_is_not_available)).create()
         isNetwork(this)
     }
 
@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity() {
                     alertDialog.hide()
 
                 }
-
                 override fun onLost(network: Network) {
                     super.onLost(network)
                     alertDialog.show()

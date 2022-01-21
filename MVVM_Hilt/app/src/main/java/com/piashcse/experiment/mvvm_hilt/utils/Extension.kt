@@ -3,6 +3,7 @@ package com.piashcse.experiment.mvvm_hilt.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.AssetManager
 import android.content.res.Resources
 import android.os.Bundle
 import android.os.Parcelable
@@ -52,6 +53,10 @@ fun View.hideKeyboard() {
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
 
+// Read json file from assets
+fun AssetManager.readAssetsFile(fileName: String): String =
+    open(fileName).bufferedReader().use { it.readText() }
+
 inline fun <reified T : Activity> Activity.openActivity(vararg params: Pair<String, Any>) {
     val intent = Intent(this, T::class.java)
     intent.putExtras(*params)
@@ -64,6 +69,7 @@ inline fun <reified T : Activity> Activity.openActivityResult(vararg params: Pai
     val intent = Intent(this, T::class.java)
     return intent.putExtras(*params)
 }
+
 fun Activity.finishActivityResult(vararg params: Pair<String, Any>) {
     val intent = Intent()
     intent.putExtras(*params)

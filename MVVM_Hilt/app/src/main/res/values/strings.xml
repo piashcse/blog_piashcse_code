@@ -23,7 +23,14 @@
     <string name="google_login">google login</string>
     <string name="bottom_sheet">bottom sheet</string>
     <string name="gps_location_with_permission">GPS location with permission</string>
-    <string name="ok">ok</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="permission_detail">For getting current location please give the location permission</string>
+    <string name="result">result</string>
+    <string name="network_connection_is_not_available">Network connection is not available</string>
+    <string name="add">Add</string>
+    <string name="company">Company</string>
+    <string name="name">Name</string>
+    <string name="lat">Lat : %s</string>
+    <string name="lon">Lon : %s</string>
 </resources>
