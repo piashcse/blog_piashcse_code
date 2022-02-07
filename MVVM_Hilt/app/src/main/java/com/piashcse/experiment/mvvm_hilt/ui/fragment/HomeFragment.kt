@@ -13,11 +13,11 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.piashcse.experiment.mvvm_hilt.R
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
+import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentHomeBinding
 import com.piashcse.experiment.mvvm_hilt.datasource.local.DataStoreManager
-import com.piashcse.experiment.mvvm_hilt.model.user.Address
-import com.piashcse.experiment.mvvm_hilt.model.user.Geo
+import com.piashcse.experiment.mvvm_hilt.datasource.model.user.Address
+import com.piashcse.experiment.mvvm_hilt.datasource.model.user.Geo
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
 import com.piashcse.experiment.mvvm_hilt.ui.common.BottomSheetRound
 import com.piashcse.experiment.mvvm_hilt.utils.*
@@ -52,6 +52,9 @@ class HomeFragment : Fragment() {
             searchFlow.setOnClickListener {
                 findNavController().navigate(R.id.searchWithFlowFragment)
             }
+            parallelApiCall.setOnClickListener {
+                findNavController().navigate(R.id.parallelApiCallFragment)
+            }
             localDb.setOnClickListener {
                 findNavController().navigate(R.id.roomDBFragment)
             }
@@ -81,9 +84,9 @@ class HomeFragment : Fragment() {
                         Geo("1.2", "1.3")
                     )
                     userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData()
-                        .observe(viewLifecycleOwner, {
+                        .observe(viewLifecycleOwner) {
                             Timber.e("serialize : $it")
-                        })
+                        }
                 }
             }
 

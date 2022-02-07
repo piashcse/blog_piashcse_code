@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentReadJsonBinding
-import com.piashcse.experiment.mvvm_hilt.model.country.CountryName
+import com.piashcse.experiment.mvvm_hilt.datasource.model.country.CountryName
 import com.piashcse.experiment.mvvm_hilt.ui.adapter.CountryAdapter
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint

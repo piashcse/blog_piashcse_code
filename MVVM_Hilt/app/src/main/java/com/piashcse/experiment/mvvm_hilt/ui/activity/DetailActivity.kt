@@ -2,9 +2,9 @@ package com.piashcse.experiment.mvvm_hilt.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
+import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.ActivityDetailBinding
-import com.piashcse.experiment.mvvm_hilt.model.user.Address
+import com.piashcse.experiment.mvvm_hilt.datasource.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.utils.finishActivityResult
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

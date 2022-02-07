@@ -51,9 +51,9 @@ class RoomDBFragment : Fragment() {
                 setHasFixedSize(true)
             }
         }
-        vm.getAllUser.observe(viewLifecycleOwner, {
+        vm.getAllUser.observe(viewLifecycleOwner) {
             userAdapter.differ.submitList(it.reversed())
-        })
+        }
 
     }
 

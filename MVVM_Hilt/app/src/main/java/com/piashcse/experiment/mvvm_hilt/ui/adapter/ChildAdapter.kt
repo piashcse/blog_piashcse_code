@@ -3,10 +3,10 @@ package com.piashcse.experiment.mvvm_hilt.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
+import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.AdapterChildHorizontalLayoutBinding
 import com.piashcse.experiment.mvvm_hilt.databinding.AdapterChildVerticalLayoutBinding
-import com.piashcse.experiment.mvvm_hilt.model.ChildData
+import com.piashcse.experiment.mvvm_hilt.datasource.model.ChildData
 
 class ChildAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: MutableList<ChildData> = arrayListOf()

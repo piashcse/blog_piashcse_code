@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
 import com.piashcse.experiment.mvvm_hilt.R
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
+import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentGPSLocationBinding
 import com.piashcse.experiment.mvvm_hilt.utils.showToast
 import timber.log.Timber

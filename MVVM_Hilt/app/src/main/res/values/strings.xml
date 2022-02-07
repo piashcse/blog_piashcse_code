@@ -33,4 +33,7 @@
     <string name="name">Name</string>
     <string name="lat">Lat : %s</string>
     <string name="lon">Lon : %s</string>
+    <string name="parallel_api_call">Parallel api call</string>
+    <string name="popular_movie">Popular movie</string>
+    <string name="top_rated_movie">Top rated movie</string>
 </resources>

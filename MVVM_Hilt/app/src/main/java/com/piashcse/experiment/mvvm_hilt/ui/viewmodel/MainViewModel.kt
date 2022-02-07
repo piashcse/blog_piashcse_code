@@ -3,10 +3,10 @@ package com.piashcse.experiment.mvvm_hilt.ui.viewmodel
 import androidx.lifecycle.*
 import com.piashcse.experiment.mvvm_hilt.datasource.local.User
 import com.piashcse.experiment.mvvm_hilt.datasource.local.UserDao
-import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
+import com.piashcse.experiment.mvvm_hilt.datasource.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.network.DataState
 import com.piashcse.experiment.mvvm_hilt.network.Resource
-import com.piashcse.experiment.mvvm_hilt.repository.DataRepository
+import com.piashcse.experiment.mvvm_hilt.datasource.repository.DataRepository
 import com.piashcse.experiment.mvvm_hilt.utils.jsonData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

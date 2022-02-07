@@ -74,5 +74,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.GPSLocationFragment"
         android:label="fragment_g_p_s_location"
         tools:layout="@layout/fragment_g_p_s_location" />
+    <fragment
+        android:id="@+id/parallelApiCallFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.parallelapicall.ParallelApiCallFragment"
+        android:label="Parallel Api Call"
+        tools:layout="@layout/fragment_parallel_api_call" />
 
 </navigation>

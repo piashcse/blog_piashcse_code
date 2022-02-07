@@ -1,7 +1,7 @@
 package com.piashcse.experiment.mvvm_hilt.datasource.remote
 
-import com.piashcse.experiment.mvvm_hilt.model.RepoSearchResponse
-import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
+import com.piashcse.experiment.mvvm_hilt.datasource.model.RepoSearchResponse
+import com.piashcse.experiment.mvvm_hilt.datasource.model.RepositoriesModel
 import retrofit2.Response
 import javax.inject.Inject
 

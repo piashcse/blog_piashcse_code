@@ -9,8 +9,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentSearchWithFlowBinding
-import com.piashcse.experiment.mvvm_hilt.model.RepoSearchResponse
-import com.piashcse.experiment.mvvm_hilt.model.RepositoriesModel
+import com.piashcse.experiment.mvvm_hilt.datasource.model.RepoSearchResponse
+import com.piashcse.experiment.mvvm_hilt.datasource.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.network.Status
 import com.piashcse.experiment.mvvm_hilt.ui.adapter.RepositoryAdapter
 import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
@@ -44,7 +44,7 @@ class SearchWithFlowFragment : Fragment() {
 
     private fun initView() {
         binding.apply {
-            search.doOnTextChanged() { text, _, _, _ ->
+            search.doOnTextChanged{ text, _, _, _ ->
                 makeFlow(text.toString())
             }
             recycler.apply {
@@ -54,7 +54,7 @@ class SearchWithFlowFragment : Fragment() {
         }
     }
 
-    private fun apiCall(since: String) = vm.getRepositoryList(since).observe(viewLifecycleOwner, {
+    private fun apiCall(since: String) = vm.getRepositoryList(since).observe(viewLifecycleOwner) {
         when (it.status) {
             Status.LOADING -> {
                 errorLog("Loading..")
@@ -67,9 +67,9 @@ class SearchWithFlowFragment : Fragment() {
                 errorLog(" Failed ...${it.data}")
             }
         }
-    })
+    }
 
-    private fun makeFlow(since: String) = vm.makeFlow(since).observe(viewLifecycleOwner, {
+    private fun makeFlow(since: String) = vm.makeFlow(since).observe(viewLifecycleOwner) {
         when (it.status) {
             Status.LOADING -> {
                 errorLog("Loading..")
@@ -83,7 +83,7 @@ class SearchWithFlowFragment : Fragment() {
                 errorLog(" Failed ...${it.data}")
             }
         }
-    })
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

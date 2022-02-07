@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentExpandableRecyclerViewBinding
-import com.piashcse.experiment.mvvm_hilt.model.expandable.Child
-import com.piashcse.experiment.mvvm_hilt.model.expandable.Item
-import com.piashcse.experiment.mvvm_hilt.model.expandable.Parent
+import com.piashcse.experiment.mvvm_hilt.datasource.model.expandable.Child
+import com.piashcse.experiment.mvvm_hilt.datasource.model.expandable.Item
+import com.piashcse.experiment.mvvm_hilt.datasource.model.expandable.Parent
 import com.piashcse.experiment.mvvm_hilt.ui.adapter.ExpandableCategoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

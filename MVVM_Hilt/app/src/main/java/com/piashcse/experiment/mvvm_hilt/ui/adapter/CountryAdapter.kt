@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.piashcse.experiment.mvvm_hilt.databinding.AdapterCountryItemLayoutBinding
-import com.piashcse.experiment.mvvm_hilt.model.country.CountryNameItem
-import java.util.*
+import com.piashcse.experiment.mvvm_hilt.datasource.model.country.CountryNameItem
 import kotlin.collections.ArrayList
 
 class CountryAdapter : RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {

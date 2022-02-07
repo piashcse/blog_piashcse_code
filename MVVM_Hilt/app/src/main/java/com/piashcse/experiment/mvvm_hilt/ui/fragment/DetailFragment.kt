@@ -9,9 +9,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
+import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentDetailBinding
-import com.piashcse.experiment.mvvm_hilt.model.user.Address
+import com.piashcse.experiment.mvvm_hilt.datasource.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.network.DataState
 import com.piashcse.experiment.mvvm_hilt.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint

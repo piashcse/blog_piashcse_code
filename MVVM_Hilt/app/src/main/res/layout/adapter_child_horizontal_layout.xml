@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.piashcse.experiment.mvvm_hilt.model.ChildData" />
+            type="com.piashcse.experiment.mvvm_hilt.datasource.model.ChildData" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"

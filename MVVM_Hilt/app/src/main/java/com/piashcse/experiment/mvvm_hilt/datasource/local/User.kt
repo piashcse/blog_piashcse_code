@@ -3,8 +3,7 @@ package com.piashcse.experiment.mvvm_hilt.datasource.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
-import java.util.*
+import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 
 
 @Entity

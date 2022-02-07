@@ -10,9 +10,9 @@ import com.piashcse.experiment.mvvm_hilt.databinding.FragmentViewPagerWithNested
 import com.piashcse.experiment.mvvm_hilt.ui.adapter.ParentAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import android.widget.TextView
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
-import com.piashcse.experiment.mvvm_hilt.model.ChildData
-import com.piashcse.experiment.mvvm_hilt.model.ParentData
+import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
+import com.piashcse.experiment.mvvm_hilt.datasource.model.ChildData
+import com.piashcse.experiment.mvvm_hilt.datasource.model.ParentData
 
 
 @AndroidEntryPoint

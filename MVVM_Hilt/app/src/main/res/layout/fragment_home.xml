@@ -23,6 +23,12 @@
                 android:text="@string/search_coroutine_flow" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/parallel_api_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/parallel_api_call" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/local_db"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

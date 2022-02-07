@@ -1,7 +1,7 @@
 package com.piashcse.experiment.mvvm_hilt.ui.adapter
 
-import com.piashcse.experiment.mvvm_hilt.model.expandable.Item
-import com.piashcse.experiment.mvvm_hilt.model.expandable.Parent
+import com.piashcse.experiment.mvvm_hilt.datasource.model.expandable.Item
+import com.piashcse.experiment.mvvm_hilt.datasource.model.expandable.Parent
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.databinding.ItemChildBinding
 import com.piashcse.experiment.mvvm_hilt.databinding.ItemParentBinding
-import com.piashcse.experiment.mvvm_hilt.model.expandable.CHILD
-import com.piashcse.experiment.mvvm_hilt.model.expandable.Child
+import com.piashcse.experiment.mvvm_hilt.datasource.model.expandable.CHILD
+import com.piashcse.experiment.mvvm_hilt.datasource.model.expandable.Child
 import timber.log.Timber
 
 class ExpandableCategoryAdapter(

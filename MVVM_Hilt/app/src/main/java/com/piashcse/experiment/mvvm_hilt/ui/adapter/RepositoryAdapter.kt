@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.piashcse.experiment.mvvm_hilt.databinding.RepositoryItemBinding
-import com.piashcse.experiment.mvvm_hilt.model.Repository
+import com.piashcse.experiment.mvvm_hilt.datasource.model.Repository
 
 class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
     private val items: MutableList<Repository> = arrayListOf()

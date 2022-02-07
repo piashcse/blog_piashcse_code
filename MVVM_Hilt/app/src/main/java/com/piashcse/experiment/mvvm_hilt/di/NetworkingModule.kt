@@ -1,7 +1,7 @@
 package com.piashcse.experiment.mvvm_hilt.di
 
-import com.piashcse.experiment.mvvm_hilt.constants.AppConstants
 import com.piashcse.experiment.mvvm_hilt.datasource.remote.ApiService
+import com.piashcse.experiment.mvvm_hilt.datasource.remote.ApiUrls
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +19,7 @@ object NetworkingModule {
 
     @Provides
     fun provideBaseURL(): String {
-        return AppConstants.BASE_URL
+        return ApiUrls.BASE_URL
     }
 
     @Provides
