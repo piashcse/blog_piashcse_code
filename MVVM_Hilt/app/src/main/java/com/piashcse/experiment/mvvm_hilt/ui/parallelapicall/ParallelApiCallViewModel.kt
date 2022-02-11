@@ -19,7 +19,7 @@ class ParallelApiCallViewModel @Inject constructor(private val repo: DataReposit
     val popularMovie: LiveData<DataState<List<MovieItem>>> = _popularMovie
 
     private var _topRatedMovie: MutableLiveData<DataState<List<MovieItem>>> = MutableLiveData()
-    val topRatedMovie: LiveData<DataState<List<MovieItem>>> = _popularMovie
+    val topRatedMovie: LiveData<DataState<List<MovieItem>>> = _topRatedMovie
 
     // Get api response at time
     fun popularAndTopRatedMovie() {

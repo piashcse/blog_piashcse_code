@@ -79,5 +79,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.parallelapicall.ParallelApiCallFragment"
         android:label="Parallel Api Call"
         tools:layout="@layout/fragment_parallel_api_call" />
+    <fragment
+        android:id="@+id/paging3Fragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.paging3.Paging3Fragment"
+        android:label="Paging3"
+        tools:layout="@layout/fragment_paging3" />
 
 </navigation>

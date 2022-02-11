@@ -1,6 +1,7 @@
 package com.piashcse.experiment.mvvm_hilt.di
 
 import com.piashcse.experiment.mvvm_hilt.datasource.remote.ApiService
+import com.piashcse.experiment.mvvm_hilt.datasource.remote.paging.PopularPagingDataSource
 import com.piashcse.experiment.mvvm_hilt.datasource.repository.DataRepository
 import dagger.Module
 import dagger.Provides
@@ -14,5 +15,10 @@ object RepositoryModule {
     @Provides
     fun provideDataRepository(apiService: ApiService): DataRepository {
         return DataRepository(apiService)
+    }
+
+    @Provides
+    fun providePopularPagingDataSource(apiService: ApiService): PopularPagingDataSource {
+        return PopularPagingDataSource(apiService)
     }
 }

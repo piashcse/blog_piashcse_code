@@ -29,6 +29,12 @@
                 android:text="@string/parallel_api_call" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/paging3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recyclerview_paging_3" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/local_db"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

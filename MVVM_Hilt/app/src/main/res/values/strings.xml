@@ -36,4 +36,5 @@
     <string name="parallel_api_call">Parallel api call</string>
     <string name="popular_movie">Popular movie</string>
     <string name="top_rated_movie">Top rated movie</string>
+    <string name="recyclerview_paging_3">RecyclerView Paging 3</string>
 </resources>

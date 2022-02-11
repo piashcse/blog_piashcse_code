@@ -55,6 +55,9 @@ class HomeFragment : Fragment() {
             parallelApiCall.setOnClickListener {
                 findNavController().navigate(R.id.parallelApiCallFragment)
             }
+            paging3.setOnClickListener {
+                findNavController().navigate(R.id.paging3Fragment)
+            }
             localDb.setOnClickListener {
                 findNavController().navigate(R.id.roomDBFragment)
             }

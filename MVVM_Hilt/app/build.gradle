@@ -106,7 +106,7 @@ dependencies {
     implementation "com.github.Drjacky:ImagePicker:2.1.15"
 
     // google login
-    implementation "com.google.android.gms:play-services-auth:20.0.1"
+    implementation "com.google.android.gms:play-services-auth:20.1.0"
 
     //
     implementation "com.google.android.gms:play-services-location:19.0.1"
