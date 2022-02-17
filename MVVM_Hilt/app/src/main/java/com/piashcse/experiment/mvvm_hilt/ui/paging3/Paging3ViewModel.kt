@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.piashcse.experiment.mvvm_hilt.datasource.remote.paging.PopularPagingDataSource
+import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingDataSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.HomeFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.DetailFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.detailfragment.DetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_detail" />
     <fragment
         android:id="@+id/roomDBFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.RoomDBFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.roomdb.RoomDBFragment"
         android:label="Local DB"
         tools:layout="@layout/fragment_room_d_b">
         <action
@@ -33,45 +33,45 @@
     </fragment>
     <fragment
         android:id="@+id/addUserFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.AddUserFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.roomdb.adddata.AddUserFragment"
         android:label="Add User" />
     <fragment
         android:id="@+id/imagePickerFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ImagePickerFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.ImagePickerFragment"
         tools:layout="@layout/fragment_image_picker" />
     <fragment
         android:id="@+id/readJsonFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ReadJsonFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.countryjson.ReadJsonFragment"
         android:label="Read json"
         tools:layout="@layout/fragment_read_json" />
     <fragment
         android:id="@+id/searchWithFlowFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.SearchWithFlowFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.searchwithflow.SearchWithFlowFragment"
         android:label="Search with flow"
         tools:layout="@layout/fragment_search_with_flow" />
     <fragment
         android:id="@+id/viewPagerWithNestedRecyclerViewFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ViewPagerWithNestedRecyclerViewFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.nestedviewpagerwithrecycler.ViewPagerWithNestedRecyclerViewFragment"
         android:label="View pager with recycler_view"
         tools:layout="@layout/fragment_view_pager_with_nested_recycler_view" />
     <fragment
         android:id="@+id/expandableRecyclerViewFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ExpandableRecyclerViewFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.expandablerecyclerview.ExpandableRecyclerViewFragment"
         android:label="Expandable recyclerVview"
         tools:layout="@layout/fragment_expandable_recycler_view" />
     <fragment
         android:id="@+id/bottomNavigationFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.BottomNavigationFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.BottomNavigationFragment"
         android:label="Bottom navigation"
         tools:layout="@layout/fragment_bottom_navigation" />
     <fragment
         android:id="@+id/googleLoginFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.GoogleLoginFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.GoogleLoginFragment"
         android:label="fragment_google_login"
         tools:layout="@layout/fragment_google_login" />
     <fragment
         android:id="@+id/gpsLocationFragment"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.GPSLocationFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.GPSLocationFragment"
         android:label="fragment_g_p_s_location"
         tools:layout="@layout/fragment_g_p_s_location" />
     <fragment

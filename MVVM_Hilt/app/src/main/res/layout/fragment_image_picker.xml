@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.fragment.ImagePickerFragment">
+    tools:context=".ui.ImagePickerFragment">
 
     <Button
         android:id="@+id/image_picker"

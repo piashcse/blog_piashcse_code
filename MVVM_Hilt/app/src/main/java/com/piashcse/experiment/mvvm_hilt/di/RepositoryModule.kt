@@ -1,8 +1,8 @@
 package com.piashcse.experiment.mvvm_hilt.di
 
-import com.piashcse.experiment.mvvm_hilt.datasource.remote.ApiService
-import com.piashcse.experiment.mvvm_hilt.datasource.remote.paging.PopularPagingDataSource
-import com.piashcse.experiment.mvvm_hilt.datasource.repository.DataRepository
+import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiService
+import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingDataSource
+import com.piashcse.experiment.mvvm_hilt.data.repository.DataRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

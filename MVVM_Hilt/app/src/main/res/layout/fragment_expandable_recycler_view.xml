@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.fragment.ExpandableRecyclerViewFragment">
+    tools:context=".ui.expandablerecyclerview.ExpandableRecyclerViewFragment">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/expandable_recycler"
         android:layout_width="match_parent"

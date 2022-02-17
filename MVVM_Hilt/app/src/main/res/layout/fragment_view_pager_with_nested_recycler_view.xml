@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background_default"
-    tools:context=".ui.fragment.ViewPagerWithNestedRecyclerViewFragment">
+    tools:context=".ui.nestedviewpagerwithrecycler.ViewPagerWithNestedRecyclerViewFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/view_change"

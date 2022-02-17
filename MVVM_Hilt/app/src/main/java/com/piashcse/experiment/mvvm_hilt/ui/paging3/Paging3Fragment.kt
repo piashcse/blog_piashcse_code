@@ -7,16 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentPaging3Binding
-import com.piashcse.experiment.mvvm_hilt.ui.adapter.MoviePagingAdapter
+import com.piashcse.experiment.mvvm_hilt.ui.paging3.adapter.MoviePagingAdapter
 import com.piashcse.experiment.mvvm_hilt.utils.hide
 import com.piashcse.experiment.mvvm_hilt.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -66,6 +69,10 @@ class Paging3Fragment : Fragment() {
                     progressBar.hide()
                 }
             }
+        }
+        moviePagingAdapter.onItemClick = {
+            Timber.e("OK OK")
+            findNavController().navigate(R.id.readJsonFragment)
         }
     }
 

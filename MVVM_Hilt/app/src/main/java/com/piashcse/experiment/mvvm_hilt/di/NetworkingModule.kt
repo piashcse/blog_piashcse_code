@@ -1,7 +1,7 @@
 package com.piashcse.experiment.mvvm_hilt.di
 
-import com.piashcse.experiment.mvvm_hilt.datasource.remote.ApiService
-import com.piashcse.experiment.mvvm_hilt.datasource.remote.ApiUrls
+import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiService
+import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiUrls
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -2,13 +2,12 @@ package com.piashcse.experiment.mvvm_hilt.di
 
 import android.content.Context
 import androidx.room.Room
-import com.piashcse.experiment.mvvm_hilt.datasource.local.AppDatabase
+import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 
 @Module

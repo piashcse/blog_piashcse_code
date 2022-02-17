@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/detailFragmentBottom"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.DetailFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.detailfragment.DetailFragment"
         android:label="DetailFragment" />
     <fragment
         android:id="@+id/expandableRecyclerViewFragmentBottom"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ExpandableRecyclerViewFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.expandablerecyclerview.ExpandableRecyclerViewFragment"
         android:label="fragment_expandable_recycler_view"
         tools:layout="@layout/fragment_expandable_recycler_view" />
     <fragment
         android:id="@+id/imagePickerFragmentBottom"
-        android:name="com.piashcse.experiment.mvvm_hilt.ui.fragment.ImagePickerFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.ImagePickerFragment"
         android:label="fragment_image_picker"
         tools:layout="@layout/fragment_image_picker" />
 

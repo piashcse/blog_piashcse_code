@@ -5,7 +5,7 @@
 
         <variable
             name="country"
-            type="com.piashcse.experiment.mvvm_hilt.datasource.model.country.CountryNameItem" />
+            type="com.piashcse.experiment.mvvm_hilt.data.model.country.CountryNameItem" />
     </data>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.piashcse.experiment.mvvm_hilt.datasource.model.movie.MovieItem
-import com.piashcse.experiment.mvvm_hilt.network.DataState
-import com.piashcse.experiment.mvvm_hilt.datasource.repository.DataRepository
+import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
+import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
+import com.piashcse.experiment.mvvm_hilt.data.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn

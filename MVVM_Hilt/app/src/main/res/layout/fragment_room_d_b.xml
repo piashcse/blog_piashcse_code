@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@android:color/darker_gray"
-        tools:context=".ui.fragment.RoomDBFragment">
+        tools:context=".ui.roomdb.RoomDBFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"

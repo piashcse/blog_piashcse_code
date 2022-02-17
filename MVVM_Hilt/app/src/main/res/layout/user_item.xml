@@ -6,7 +6,7 @@
     <data>
         <variable
             name="user"
-            type="com.piashcse.experiment.mvvm_hilt.datasource.local.User" />
+            type="com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.User" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
