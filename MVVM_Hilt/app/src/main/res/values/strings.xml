@@ -37,4 +37,10 @@
     <string name="popular_movie">Popular movie</string>
     <string name="top_rated_movie">Top rated movie</string>
     <string name="recyclerview_paging_3">RecyclerView Paging 3</string>
+    <string name="save">Save</string>
+    <string name="show_data">Show data</string>
+    <string name="city">City :&#160;</string>
+    <string name="zipcode">Zipcode :&#160;</string>
+    <string name="enter_you_city_name">Enter you city name</string>
+    <string name="enter_your_city_zip_code">Enter your city zip code</string>
 </resources>

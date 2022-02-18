@@ -12,6 +12,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.piashcse.experiment.mvvm_hilt.R
 import okhttp3.ResponseBody
@@ -36,11 +38,19 @@ fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
 }
 
 fun View.hide() {
-    this.visibility = View.GONE
+    this.isGone = false
 }
 
 fun View.show() {
-    this.visibility = View.VISIBLE
+    this.isGone = true
+}
+
+fun View.visible() {
+    this.isVisible = true
+}
+
+fun View.invisible() {
+    this.isVisible = true
 }
 
 fun Int.dpToPx(): Int {

@@ -30,7 +30,6 @@ import timber.log.Timber
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = requireNotNull(_binding)
-    private lateinit var userDataStore: DataStoreManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +46,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView() {
-        userDataStore = DataStoreManager(requireContext())
         binding.apply {
             searchFlow.setOnClickListener {
                 findNavController().navigate(R.id.searchWithFlowFragment)
@@ -81,16 +79,7 @@ class HomeFragment : Fragment() {
             }
 
             dataStore.setOnClickListener {
-                lifecycleScope.launch {
-                    userDataStore.storeObjectAsJson(
-                        DataStoreManager.USER_NAME_KEY,
-                        Geo("1.2", "1.3")
-                    )
-                    userDataStore.getObjectData<Geo>(DataStoreManager.USER_NAME_KEY).asLiveData()
-                        .observe(viewLifecycleOwner) {
-                            Timber.e("serialize : $it")
-                        }
-                }
+                findNavController().navigate(R.id.dataStoreFragment)
             }
 
             imagePicker.setOnClickListener {

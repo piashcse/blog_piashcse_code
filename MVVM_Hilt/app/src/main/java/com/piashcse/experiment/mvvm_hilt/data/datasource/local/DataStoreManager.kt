@@ -23,6 +23,7 @@ class DataStoreManager(var context: Context) {
     companion object {
         val USER_NAME_KEY = stringPreferencesKey("USER_NAME")
         val USER_AGE_KEY = intPreferencesKey("USER_AGE")
+        val USER_ADDRESS = stringPreferencesKey("USER_ADDRESS")
     }
 
     // Store user data
@@ -169,16 +170,5 @@ class DataStoreManager(var context: Context) {
         }
     }.map {
         it[key] ?: false
-    }
-
-
-   /* private fun <T> serializeData(data: T): String {
-        return Gson().toJson(data)
-    }*/
-    inline fun <reified T : Any> T.serializeData() : String = Gson().toJson(this, T::class.java)
-
-
-    inline fun <reified T> deSerializeData(data: String): T {
-        return Gson().fromJson(data, T::class.java)
     }
 }

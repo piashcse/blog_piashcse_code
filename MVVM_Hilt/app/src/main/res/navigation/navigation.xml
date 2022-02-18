@@ -84,5 +84,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.paging3.Paging3Fragment"
         android:label="Paging3"
         tools:layout="@layout/fragment_paging3" />
+    <fragment
+        android:id="@+id/dataStoreFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.datastore.DataStoreFragment"
+        android:label="Data Store"
+        tools:layout="@layout/fragment_data_store" />
 
 </navigation>
