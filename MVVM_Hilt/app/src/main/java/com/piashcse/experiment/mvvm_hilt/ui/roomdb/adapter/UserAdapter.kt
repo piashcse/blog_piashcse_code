@@ -9,14 +9,6 @@ import com.piashcse.experiment.mvvm_hilt.databinding.UserItemBinding
 import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.User
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-    // private var users: ArrayList<User> = arrayListOf()
-
-    /* fun addItems(user: List<User>?) {
-         user?.let {
-             users.addAll(it)
-             notifyDataSetChanged()
-         }
-     }*/
 
     class UserViewHolder(val binding: UserItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: User) {
