@@ -5,6 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.AssetManager
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -15,6 +19,10 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import com.piashcse.experiment.mvvm_hilt.R
 import okhttp3.ResponseBody
 import org.json.JSONObject
@@ -60,6 +68,7 @@ fun Int.dpToPx(): Int {
 fun Int.pixelToDp(): Int {
     return (this / Resources.getSystem().displayMetrics.density).toInt()
 }
+
 /**
  * loading image extension function using glide with placeholder
  */
@@ -137,3 +146,29 @@ fun Intent.putExtras(vararg params: Pair<String, Any>): Intent {
     }
     return this
 }
+
+fun GoogleMap.applyMapCamera(latLng: LatLng) {
+    val cameraPosition = CameraPosition.Builder()
+        .target(latLng) // Sets the center of the map
+        .zoom(13.0f) // Sets the zoom
+        .build()
+    this.animateCamera(
+        CameraUpdateFactory.newCameraPosition(cameraPosition)
+    )
+}
+
+fun loadBitmapView(customMarkerView: View): Bitmap {
+    customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+    customMarkerView.layout(0, 0, customMarkerView.measuredWidth, customMarkerView.measuredHeight)
+    val bitmap = Bitmap.createBitmap(
+        customMarkerView.measuredWidth, customMarkerView.measuredHeight,
+        Bitmap.Config.ARGB_8888
+    )
+    val canvas = Canvas(bitmap)
+    canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN)
+    customMarkerView.background?.draw(canvas)
+    customMarkerView.draw(canvas)
+    return bitmap
+}
+
+

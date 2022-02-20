@@ -89,5 +89,9 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.datastore.DataStoreFragment"
         android:label="Data Store"
         tools:layout="@layout/fragment_data_store" />
+    <fragment
+        android:id="@+id/googleMapFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.googlemap.GoogleMapFragment"
+        android:label="GoogleMap" />
 
 </navigation>

@@ -59,6 +59,9 @@ class HomeFragment : Fragment() {
             localDb.setOnClickListener {
                 findNavController().navigate(R.id.roomDBFragment)
             }
+            googleMap.setOnClickListener {
+                findNavController().navigate(R.id.googleMapFragment)
+            }
             detailFragment.setOnClickListener {
                 findNavController().navigate(
                     R.id.detailFragment,

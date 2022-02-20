@@ -41,6 +41,13 @@
                 android:text="@string/local_database" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/google_map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/google_map" />
+
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/detail_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -43,4 +43,6 @@
     <string name="zipcode">Zipcode :&#160;</string>
     <string name="enter_you_city_name">Enter you city name</string>
     <string name="enter_your_city_zip_code">Enter your city zip code</string>
+    <string name="google_map">Google Map</string>
+    <string name="custom_marker">custom_marker</string>
 </resources>
