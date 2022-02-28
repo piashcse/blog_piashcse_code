@@ -11,17 +11,20 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DataBaseModule {
 
+    @Singleton
     @Provides
     fun provideDataStoreManager(@ApplicationContext context: Context): DataStoreManager {
         return DataStoreManager(context)
     }
 
+    @Singleton
     @Provides
     fun provideDB(@ApplicationContext applicationContext: Context) = Room.databaseBuilder(
         applicationContext,
@@ -29,10 +32,12 @@ object DataBaseModule {
         "user_database"
     ).build()
 
+    @Singleton
     @Provides
     fun provideYourDao(db: AppDatabase) = db.userDao()
 
 
+    @Singleton
     @Provides
     fun provideRoomRepository(userDao: UserDao) = RoomDBRepository(userDao)
 

@@ -1,7 +1,10 @@
 package com.piashcse.experiment.mvvm_hilt.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import com.piashcse.experiment.mvvm_hilt.data.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiService
+import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingDataSource
 import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
 import com.piashcse.experiment.mvvm_hilt.utils.network.Resource
 import com.piashcse.experiment.mvvm_hilt.utils.jsonData
@@ -63,4 +66,11 @@ class DataRepository @Inject constructor(private val apiService: ApiService) {
         }
 
     }
+
+   fun popularPagingDataSource() = Pager(
+       // Configure how data is loaded by passing additional properties to
+       // PagingConfig, such as prefetchDistance.
+       pagingSourceFactory = { PopularPagingDataSource(apiService) },
+       config = PagingConfig(pageSize = 2)
+   ).flow
 }

@@ -2,21 +2,21 @@ package com.piashcse.experiment.mvvm_hilt.ui.paging3
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
+import androidx.paging.*
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingDataSource
+import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
+import com.piashcse.experiment.mvvm_hilt.data.repository.DataRepository
+import com.piashcse.experiment.mvvm_hilt.data.repository.DataStoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class Paging3ViewModel @Inject constructor(private val repoPaging: PopularPagingDataSource) :
+class Paging3ViewModel @Inject constructor(private val repository: DataRepository) :
     ViewModel() {
-    val flow = Pager(
-        // Configure how data is loaded by passing additional properties to
-        // PagingConfig, such as prefetchDistance.
-        PagingConfig(pageSize = 2)
-    ) {
-        repoPaging
-    }.flow.cachedIn(viewModelScope)
+    fun popularPagingDataSource(): Flow<PagingData<MovieItem>> {
+        return repository.popularPagingDataSource().cachedIn(viewModelScope)
+    }
 }

@@ -19,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -47,7 +46,7 @@ class Paging3Fragment : Fragment() {
 
     private fun initView() = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.flow.catch {
+            viewModel.popularPagingDataSource().catch {
                 progressBar.hide()
             }.collectLatest {
                 moviePagingAdapter.submitData(it)
@@ -71,7 +70,6 @@ class Paging3Fragment : Fragment() {
             }
         }
         moviePagingAdapter.onItemClick = {
-            Timber.e("OK OK")
             findNavController().navigate(R.id.readJsonFragment)
         }
     }

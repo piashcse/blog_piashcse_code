@@ -65,16 +65,7 @@ class GoogleMapFragment : Fragment(), OnMapReadyCallback {
             MarkerOptions()
                 .position(sydney)
                 .title("Marker in Sydney")
-        )?.setIcon(
-            BitmapDescriptorFactory.fromBitmap(
-                loadBitmapView(
-                    layoutInflater.inflate(
-                        R.layout.custom_marker,
-                        null
-                    )
-                )
-            )
-        )
+        )?.setIcon(loadBitmapView(R.layout.custom_marker))
         mMap.applyMapCamera(sydney)
     }
 

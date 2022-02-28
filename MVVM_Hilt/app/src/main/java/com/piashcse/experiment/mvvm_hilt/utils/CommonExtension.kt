@@ -16,11 +16,15 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.piashcse.experiment.mvvm_hilt.R
@@ -46,11 +50,11 @@ fun Context.showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
 }
 
 fun View.hide() {
-    this.isGone = false
+    this.isGone = true
 }
 
 fun View.show() {
-    this.isGone = true
+    this.isGone = false
 }
 
 fun View.visible() {
@@ -157,7 +161,7 @@ fun GoogleMap.applyMapCamera(latLng: LatLng) {
     )
 }
 
-fun loadBitmapView(customMarkerView: View): Bitmap {
+fun loadBitmapView(customMarkerView: View): BitmapDescriptor {
     customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
     customMarkerView.layout(0, 0, customMarkerView.measuredWidth, customMarkerView.measuredHeight)
     val bitmap = Bitmap.createBitmap(
@@ -168,7 +172,42 @@ fun loadBitmapView(customMarkerView: View): Bitmap {
     canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN)
     customMarkerView.background?.draw(canvas)
     customMarkerView.draw(canvas)
-    return bitmap
+    return  BitmapDescriptorFactory.fromBitmap(bitmap)
+}
+
+fun Activity.loadBitmapView(@LayoutRes layoutId: Int): BitmapDescriptor {
+    val customMarkerView = layoutInflater.inflate(
+       layoutId,
+        null)
+    customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+    customMarkerView.layout(0, 0, customMarkerView.measuredWidth, customMarkerView.measuredHeight)
+    val bitmap = Bitmap.createBitmap(
+        customMarkerView.measuredWidth, customMarkerView.measuredHeight,
+        Bitmap.Config.ARGB_8888
+    )
+    val canvas = Canvas(bitmap)
+    canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN)
+    customMarkerView.background?.draw(canvas)
+    customMarkerView.draw(canvas)
+    return  BitmapDescriptorFactory.fromBitmap(bitmap)
+}
+
+
+fun Fragment.loadBitmapView(@LayoutRes layoutId: Int): BitmapDescriptor {
+    val customMarkerView = layoutInflater.inflate(
+        layoutId,
+        null)
+    customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+    customMarkerView.layout(0, 0, customMarkerView.measuredWidth, customMarkerView.measuredHeight)
+    val bitmap = Bitmap.createBitmap(
+        customMarkerView.measuredWidth, customMarkerView.measuredHeight,
+        Bitmap.Config.ARGB_8888
+    )
+    val canvas = Canvas(bitmap)
+    canvas.drawColor(Color.WHITE, PorterDuff.Mode.SRC_IN)
+    customMarkerView.background?.draw(canvas)
+    customMarkerView.draw(canvas)
+    return  BitmapDescriptorFactory.fromBitmap(bitmap)
 }
 
 
