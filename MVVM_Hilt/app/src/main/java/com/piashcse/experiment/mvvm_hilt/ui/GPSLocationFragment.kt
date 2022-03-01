@@ -20,7 +20,8 @@ import com.piashcse.experiment.mvvm_hilt.utils.showToast
 import timber.log.Timber
 
 class GPSLocationFragment : Fragment() {
-    private lateinit var binding: FragmentGPSLocationBinding
+    private var _binding: FragmentGPSLocationBinding? = null
+    private val binding get() = requireNotNull(_binding)
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(requireActivity())
     }
@@ -35,7 +36,7 @@ class GPSLocationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentGPSLocationBinding.inflate(inflater, container, false)
+        _binding = FragmentGPSLocationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -138,6 +139,11 @@ class GPSLocationFragment : Fragment() {
                 // decision.
             }
         }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 
 }

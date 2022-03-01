@@ -69,4 +69,9 @@ class GoogleMapFragment : Fragment(), OnMapReadyCallback {
         mMap.applyMapCamera(sydney)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
