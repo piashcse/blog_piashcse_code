@@ -56,6 +56,9 @@ class HomeFragment : Fragment() {
             paging3.setOnClickListener {
                 findNavController().navigate(R.id.paging3Fragment)
             }
+            pagination.setOnClickListener {
+                findNavController().navigate(R.id.paginationFragment)
+            }
             localDb.setOnClickListener {
                 findNavController().navigate(R.id.roomDBFragment)
             }
@@ -76,23 +79,18 @@ class HomeFragment : Fragment() {
                     )
                 )
             }
-
             detailActivityResult.setOnClickListener {
                 resultContract.launch(requireActivity().openActivityResult<DetailActivity>())
             }
-
             dataStore.setOnClickListener {
                 findNavController().navigate(R.id.dataStoreFragment)
             }
-
             imagePicker.setOnClickListener {
                 findNavController().navigate(R.id.imagePickerFragment)
             }
-
             readJson.setOnClickListener {
                 findNavController().navigate(R.id.readJsonFragment)
             }
-
             viewPagerWithRecycler.setOnClickListener {
                 findNavController().navigate(R.id.viewPagerWithNestedRecyclerViewFragment)
             }
@@ -102,11 +100,9 @@ class HomeFragment : Fragment() {
             bottomNavigation.setOnClickListener {
                 findNavController().navigate(R.id.bottomNavigationFragment)
             }
-
             googleLogin.setOnClickListener {
                 findNavController().navigate(R.id.googleLoginFragment)
             }
-
             bottomSheet.setOnClickListener {
                 BottomSheetRound().show(childFragmentManager, AppConstants.Dialog.DIALOG_TAG)
             }

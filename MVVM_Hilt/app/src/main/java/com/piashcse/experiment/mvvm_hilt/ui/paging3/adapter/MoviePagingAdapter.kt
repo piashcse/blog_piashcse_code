@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.piashcse.experiment.mvvm_hilt.databinding.AdapterMovieItemPagingLayoutBinding
 import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiUrls
+import com.piashcse.experiment.mvvm_hilt.databinding.AdapterMovieItemPaging3LayoutBinding
 import com.piashcse.experiment.mvvm_hilt.utils.loadImage
 
 class MoviePagingAdapter :
     PagingDataAdapter<MovieItem, MoviePagingAdapter.MovieViewHolder>(DataDifferentiator) {
     var onItemClick: ((MovieItem) -> Unit)? = null
 
-    inner class MovieViewHolder(val bind: AdapterMovieItemPagingLayoutBinding) :
+    inner class MovieViewHolder(val bind: AdapterMovieItemPaging3LayoutBinding) :
         RecyclerView.ViewHolder(bind.root) {
         fun bind(item: MovieItem) {
             itemView.setOnClickListener {
@@ -31,7 +31,7 @@ class MoviePagingAdapter :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val bind = AdapterMovieItemPagingLayoutBinding.inflate(
+        val bind = AdapterMovieItemPaging3LayoutBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

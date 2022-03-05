@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentParallelApiCallBinding
 import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
-import com.piashcse.experiment.mvvm_hilt.ui.paging3.adapter.MovieAdapter
+import com.piashcse.experiment.mvvm_hilt.ui.parallelapicall.adapter.MovieAdapter
 import com.piashcse.experiment.mvvm_hilt.utils.hide
 import com.piashcse.experiment.mvvm_hilt.utils.show
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,14 +1,14 @@
-package com.piashcse.experiment.mvvm_hilt.ui.paging3.adapter
+package com.piashcse.experiment.mvvm_hilt.ui.pagination.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.piashcse.experiment.mvvm_hilt.databinding.AdapterMovieItemLayoutBinding
 import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiUrls
+import com.piashcse.experiment.mvvm_hilt.databinding.AdapterMovieItemPaginationLayoutBinding
 import com.piashcse.experiment.mvvm_hilt.utils.loadImage
 
-class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MoviePagingAdapter : RecyclerView.Adapter<MoviePagingAdapter.MovieViewHolder>() {
     private val items: MutableList<MovieItem> = arrayListOf()
     var onItemClick: ((MovieItem) -> Unit)? = null
 
@@ -24,7 +24,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
         }
     }
 
-    inner class MovieViewHolder(val bind: AdapterMovieItemLayoutBinding) :
+    inner class MovieViewHolder(val bind: AdapterMovieItemPaginationLayoutBinding) :
         RecyclerView.ViewHolder(bind.root) {
         fun bind(item: MovieItem) {
             itemView.setOnClickListener {
@@ -35,7 +35,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val bind = AdapterMovieItemLayoutBinding.inflate(
+        val bind = AdapterMovieItemPaginationLayoutBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

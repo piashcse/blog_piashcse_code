@@ -35,6 +35,12 @@
                 android:text="@string/recyclerview_paging_3" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/pagination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pagination" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/local_db"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
