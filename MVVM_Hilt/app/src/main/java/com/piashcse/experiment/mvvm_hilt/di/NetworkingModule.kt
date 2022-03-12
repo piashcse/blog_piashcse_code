@@ -17,22 +17,30 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
-
+    /**
+     * Provides BaseUrl as string
+     */
     @Singleton
     @Provides
     fun provideBaseURL(): String {
         return ApiUrls.BASE_URL
     }
 
+    /**
+     * Provides LoggingInterceptor for api information
+     */
     @Singleton
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
+    /**
+     * Provides custom OkkHttp
+     */
     @Singleton
     @Provides
-    fun provideOkHttpClient( loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val okHttpClient = OkHttpClient().newBuilder()
 
         okHttpClient.callTimeout(40, TimeUnit.SECONDS)
@@ -44,15 +52,25 @@ object NetworkingModule {
         return okHttpClient.build()
     }
 
+    /**
+     * Provides converter factory for retrofit
+     */
     @Singleton
     @Provides
     fun provideConverterFactory(): Converter.Factory {
         return GsonConverterFactory.create()
     }
 
+    /**
+     * Provides ApiServices client for Retrofit
+     */
     @Singleton
     @Provides
-    fun provideRetrofitClient(baseUrl: String, okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit{
+    fun provideRetrofitClient(
+        baseUrl: String,
+        okHttpClient: OkHttpClient,
+        converterFactory: Converter.Factory
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
@@ -60,6 +78,9 @@ object NetworkingModule {
             .build()
     }
 
+    /**
+     * Provides Api Service using retrofit
+     */
     @Singleton
     @Provides
     fun provideRestApiService(retrofit: Retrofit): ApiService {

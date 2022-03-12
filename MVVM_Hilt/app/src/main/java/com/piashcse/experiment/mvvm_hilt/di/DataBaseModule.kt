@@ -18,12 +18,18 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DataBaseModule {
 
+    /**
+     * Provides DataStoreManger
+     */
     @Singleton
     @Provides
     fun provideDataStoreManager(@ApplicationContext context: Context): DataStoreManager {
         return DataStoreManager(context)
     }
 
+    /**
+     * Provides AppDatabase
+     */
     @Singleton
     @Provides
     fun provideDB(@ApplicationContext applicationContext: Context) = Room.databaseBuilder(
@@ -32,14 +38,18 @@ object DataBaseModule {
         "user_database"
     ).build()
 
+    /**
+     * Provides userDao an object to access user table from Database
+     */
     @Singleton
     @Provides
     fun provideYourDao(db: AppDatabase) = db.userDao()
 
-
+    /**
+     * Provides RoomDBRepository object
+     */
     @Singleton
     @Provides
     fun provideRoomRepository(userDao: UserDao) = RoomDBRepository(userDao)
-
 
 }
