@@ -91,9 +91,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
 
     // room database
-    implementation "androidx.room:room-runtime:2.4.1"
-    kapt "androidx.room:room-compiler:2.4.1"
-    implementation "androidx.room:room-ktx:2.4.1"
+    implementation "androidx.room:room-runtime:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.2"
 
     // data store
     implementation  "androidx.datastore:datastore-core:1.0.0"
@@ -113,9 +113,9 @@ dependencies {
     implementation "com.jcminarro:RoundKornerLayouts:0.4.0"
 
     // splash screen
-    implementation "androidx.core:core-splashscreen:1.0.0-beta01"
+    implementation "androidx.core:core-splashscreen:1.0.0-beta02"
 
-    implementation "androidx.paging:paging-runtime-ktx:3.1.0"
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
 
     implementation "com.github.markomilos:paginate:1.0.0"
 
@@ -124,4 +124,8 @@ dependencies {
 
     // google map
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+
+    //exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
+
 }

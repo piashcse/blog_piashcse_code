@@ -20,6 +20,7 @@ import com.piashcse.experiment.mvvm_hilt.data.model.user.Address
 import com.piashcse.experiment.mvvm_hilt.data.model.user.Geo
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
 import com.piashcse.experiment.mvvm_hilt.ui.commonui.BottomSheetRound
+import com.piashcse.experiment.mvvm_hilt.ui.exoplyer.ExoPlayerActivity
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -64,6 +65,12 @@ class HomeFragment : Fragment() {
             }
             googleMap.setOnClickListener {
                 findNavController().navigate(R.id.googleMapFragment)
+            }
+            exoPlayerActivity.setOnClickListener {
+                requireActivity().openActivity<ExoPlayerActivity>()
+            }
+            exoPlayerFragment.setOnClickListener {
+                findNavController().navigate(R.id.exoPlayerFragment)
             }
             detailFragment.setOnClickListener {
                 findNavController().navigate(

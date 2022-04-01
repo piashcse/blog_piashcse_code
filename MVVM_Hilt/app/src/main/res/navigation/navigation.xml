@@ -98,5 +98,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.pagination.PaginationFragment"
         android:label="Pagination"
         tools:layout="@layout/fragment_pagination" />
+    <fragment
+        android:id="@+id/exoPlayerFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.exoplyer.ExoPlayerFragment"
+        android:label="fragment_exo_player"
+        tools:layout="@layout/fragment_exo_player" />
 
 </navigation>
