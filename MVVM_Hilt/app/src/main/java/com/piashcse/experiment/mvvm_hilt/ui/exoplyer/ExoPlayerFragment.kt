@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.util.Util
@@ -68,8 +71,8 @@ class ExoPlayerFragment : Fragment() {
 
                 val mediaItem = MediaItem.fromUri(getString(R.string.media_url_mp4))
                 exoPlayer.setMediaItem(mediaItem)
-               // val secondMediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3))
-               // exoPlayer.addMediaItem(secondMediaItem)
+                // val secondMediaItem = MediaItem.fromUri(getString(R.string.media_url_mp3))
+                // exoPlayer.addMediaItem(secondMediaItem)
                 exoPlayer.playWhenReady = playWhenReady
                 exoPlayer.seekTo(currentWindow, playbackPosition)
                 exoPlayer.prepare()
@@ -86,7 +89,7 @@ class ExoPlayerFragment : Fragment() {
         player = null
     }
 
-    @SuppressLint("InlinedApi")
+  /*  @SuppressLint("InlinedApi")
     private fun hideSystemUi() {
         binding.videoView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -94,5 +97,17 @@ class ExoPlayerFragment : Fragment() {
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+    }*/
+    private fun hideSystemUi() {
+        WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
+        WindowInsetsControllerCompat(requireActivity().window, binding.videoView).let { controller ->
+            controller.hide(WindowInsetsCompat.Type.systemBars())
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

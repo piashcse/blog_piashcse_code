@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.util.Util
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.databinding.ActivityExoPlayerBinding
@@ -58,7 +60,7 @@ class ExoPlayerActivity : AppCompatActivity() {
     }
 
     private fun initializePlayer() {
-        player = SimpleExoPlayer.Builder(this)
+        player = ExoPlayer.Builder(this)
             .build()
             .also { exoPlayer ->
                 viewBinding.videoView.player = exoPlayer
@@ -83,7 +85,7 @@ class ExoPlayerActivity : AppCompatActivity() {
         player = null
     }
 
-    @SuppressLint("InlinedApi")
+   /* @SuppressLint("InlinedApi")
     private fun hideSystemUi() {
         viewBinding.videoView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
                 or View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -91,5 +93,12 @@ class ExoPlayerActivity : AppCompatActivity() {
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+    }*/
+    private fun hideSystemUi() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        WindowInsetsControllerCompat(window, viewBinding.videoView).let { controller ->
+            controller.hide(WindowInsetsCompat.Type.systemBars())
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
     }
 }
