@@ -1,17 +1,13 @@
 package com.piashcse.experiment.mvvm_hilt.ui.pagination
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.paginate.Paginate
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentPaginationBinding
 import com.piashcse.experiment.mvvm_hilt.ui.pagination.adapter.MoviePagingAdapter
+import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 import com.piashcse.experiment.mvvm_hilt.utils.hide
 import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
 import com.piashcse.experiment.mvvm_hilt.utils.show
@@ -19,9 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PaginationFragment : Fragment() {
-    private var _binding: FragmentPaginationBinding? = null
-    private val binding get() = requireNotNull(_binding)
+class PaginationFragment : BaseBindingFragment<FragmentPaginationBinding>() {
     private val paginationViewModel: PaginationViewModel by viewModels()
     private val moviePagingAdapter: MoviePagingAdapter by lazy {
         MoviePagingAdapter()
@@ -35,48 +29,36 @@ class PaginationFragment : Fragment() {
         paginationViewModel.popularMovie(page)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentPaginationBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun init() {
+        binding.apply {
+            paginationRecycler.apply {
+                layoutManager = GridLayoutManager(requireContext(), 2)
+                adapter = moviePagingAdapter
+            }
+            val callbacks: Paginate.Callbacks = object : Paginate.Callbacks {
+                override fun onLoadMore() {
+                    // Load next page of data (e.g. network or database)
+                    lifecycleScope.launch {
+                        paginationViewModel.popularMovie(++page)
+                    }
+                }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        apiResponse()
-    }
+                override fun isLoading(): Boolean {
+                    // Indicate whether new page loading is in progress or not
+                    return loadingInProgress
+                }
 
-    private fun initView() = with(binding) {
-        paginationRecycler.apply {
-            layoutManager =  GridLayoutManager(requireContext(), 2)
-            adapter = moviePagingAdapter
-        }
-        val callbacks: Paginate.Callbacks = object : Paginate.Callbacks {
-            override fun onLoadMore() {
-                // Load next page of data (e.g. network or database)
-                lifecycleScope.launch {
-                    paginationViewModel.popularMovie(++page)
+                override fun hasLoadedAllItems(): Boolean {
+                    // Indicate whether all data (pages) are loaded or not
+                    return hasLoadedAllItems
                 }
             }
-
-            override fun isLoading(): Boolean {
-                // Indicate whether new page loading is in progress or not
-                return loadingInProgress
-            }
-
-            override fun hasLoadedAllItems(): Boolean {
-                // Indicate whether all data (pages) are loaded or not
-                return hasLoadedAllItems
-            }
+            Paginate.with(paginationRecycler, callbacks)
+                .setLoadingTriggerThreshold(1)
+                .addLoadingListItem(false)
+                .build()
         }
-        Paginate.with(paginationRecycler, callbacks)
-            .setLoadingTriggerThreshold(1)
-            .addLoadingListItem(false)
-            .build()
+        apiResponse()
     }
 
     private fun apiResponse() = with(binding) {
@@ -99,11 +81,6 @@ class PaginationFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
 }

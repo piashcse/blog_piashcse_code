@@ -1,39 +1,20 @@
 package com.piashcse.experiment.mvvm_hilt.ui.expandablerecyclerview
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentExpandableRecyclerViewBinding
 import com.piashcse.experiment.mvvm_hilt.data.model.expandable.Child
 import com.piashcse.experiment.mvvm_hilt.data.model.expandable.Item
 import com.piashcse.experiment.mvvm_hilt.data.model.expandable.Parent
 import com.piashcse.experiment.mvvm_hilt.ui.countryjson.adapter.ExpandableCategoryAdapter
+import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExpandableRecyclerViewFragment : Fragment() {
-    private var _binding: FragmentExpandableRecyclerViewBinding? = null
-    private val binding get() = requireNotNull(_binding) // or _binding!!
+class ExpandableRecyclerViewFragment : BaseBindingFragment<FragmentExpandableRecyclerViewBinding>() {
     private lateinit var expandableAdapter: ExpandableCategoryAdapter
     private val expandableItems = ArrayList<Item>()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentExpandableRecyclerViewBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
-
-    private fun initView() {
+    override fun init() {
         for (i in 1..5) {
             val parent = Parent("Parent sequence $i")
             val childItems = arrayListOf<Child>()
@@ -49,10 +30,4 @@ class ExpandableRecyclerViewFragment : Fragment() {
             adapter = expandableAdapter
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

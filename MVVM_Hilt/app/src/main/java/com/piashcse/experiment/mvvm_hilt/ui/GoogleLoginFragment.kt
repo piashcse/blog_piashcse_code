@@ -13,43 +13,28 @@ import com.piashcse.experiment.mvvm_hilt.databinding.FragmentGoogleLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class GoogleLoginFragment : Fragment() {
-    private var _binding: FragmentGoogleLoginBinding? = null
-    private val binding get() = requireNotNull(_binding)
+class GoogleLoginFragment : BaseBindingFragment<FragmentGoogleLoginBinding>() {
     @Inject
     lateinit var googleSignInClient: GoogleSignInClient
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentGoogleLoginBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
-
-    private fun initView() {
+    override fun init() {
         binding.googleLogin.setOnClickListener {
             googleLogin()
         }
-
     }
 
     private fun googleLogin() {
         val account = GoogleSignIn.getLastSignedInAccount(requireActivity())
-        if(account == null){
+        if (account == null) {
             Timber.e("login again")
             resultContract.launch(googleSignInClient.signInIntent)
-        }else{
+        } else {
             Timber.e("token ${account.idToken}")
         }
     }
@@ -72,10 +57,5 @@ class GoogleLoginFragment : Fragment() {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Timber.e("signInResult:failed code=" + e.statusCode)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

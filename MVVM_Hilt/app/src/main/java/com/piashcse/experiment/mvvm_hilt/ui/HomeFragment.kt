@@ -9,15 +9,11 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentHomeBinding
-import com.piashcse.experiment.mvvm_hilt.data.datasource.local.DataStoreManager
 import com.piashcse.experiment.mvvm_hilt.data.model.user.Address
-import com.piashcse.experiment.mvvm_hilt.data.model.user.Geo
 import com.piashcse.experiment.mvvm_hilt.ui.activity.DetailActivity
 import com.piashcse.experiment.mvvm_hilt.ui.commonui.BottomSheetRound
 import com.piashcse.experiment.mvvm_hilt.ui.exoplyer.ExoPlayerActivity
@@ -46,78 +42,75 @@ class HomeFragment : Fragment() {
         initView()
     }
 
-    private fun initView() {
-        binding.apply {
-            searchFlow.setOnClickListener {
-                findNavController().navigate(R.id.searchWithFlowFragment)
-            }
-            parallelApiCall.setOnClickListener {
-                findNavController().navigate(R.id.parallelApiCallFragment)
-            }
-            paging3.setOnClickListener {
-                findNavController().navigate(R.id.paging3Fragment)
-            }
-            pagination.setOnClickListener {
-                findNavController().navigate(R.id.paginationFragment)
-            }
-            localDb.setOnClickListener {
-                findNavController().navigate(R.id.roomDBFragment)
-            }
-            googleMap.setOnClickListener {
-                findNavController().navigate(R.id.googleMapFragment)
-            }
-            exoPlayerActivity.setOnClickListener {
-                requireActivity().openActivity<ExoPlayerActivity>()
-            }
-            exoPlayerFragment.setOnClickListener {
-                findNavController().navigate(R.id.exoPlayerFragment)
-            }
-            detailFragment.setOnClickListener {
-                findNavController().navigate(
-                    R.id.detailFragment,
-                    bundleOf(AppConstants.DataTask.DATA to Address("Dhaka", "1205"))
-                )
-            }
-            detailActivity.setOnClickListener {
-                requireActivity().openActivity<DetailActivity>(
-                    AppConstants.DataTask.ADDRESS to Address(
-                        "Dhaka",
-                        "1205"
-                    )
-                )
-            }
-            detailActivityResult.setOnClickListener {
-                resultContract.launch(requireActivity().openActivityResult<DetailActivity>())
-            }
-            dataStore.setOnClickListener {
-                findNavController().navigate(R.id.dataStoreFragment)
-            }
-            imagePicker.setOnClickListener {
-                findNavController().navigate(R.id.imagePickerFragment)
-            }
-            readJson.setOnClickListener {
-                findNavController().navigate(R.id.readJsonFragment)
-            }
-            viewPagerWithRecycler.setOnClickListener {
-                findNavController().navigate(R.id.viewPagerWithNestedRecyclerViewFragment)
-            }
-            expandableRecyclerveiw.setOnClickListener {
-                findNavController().navigate(R.id.expandableRecyclerViewFragment)
-            }
-            bottomNavigation.setOnClickListener {
-                findNavController().navigate(R.id.bottomNavigationFragment)
-            }
-            googleLogin.setOnClickListener {
-                findNavController().navigate(R.id.googleLoginFragment)
-            }
-            bottomSheet.setOnClickListener {
-                BottomSheetRound().show(childFragmentManager, AppConstants.Dialog.DIALOG_TAG)
-            }
-            gpsLocation.setOnClickListener {
-                findNavController().navigate(R.id.gpsLocationFragment)
-            }
+    private fun initView() = with(binding) {
+        searchFlow.setOnClickListener {
+            findNavController().navigate(R.id.searchWithFlowFragment)
         }
-
+        parallelApiCall.setOnClickListener {
+            findNavController().navigate(R.id.parallelApiCallFragment)
+        }
+        paging3.setOnClickListener {
+            findNavController().navigate(R.id.paging3Fragment)
+        }
+        pagination.setOnClickListener {
+            findNavController().navigate(R.id.paginationFragment)
+        }
+        localDb.setOnClickListener {
+            findNavController().navigate(R.id.roomDBFragment)
+        }
+        googleMap.setOnClickListener {
+            findNavController().navigate(R.id.googleMapFragment)
+        }
+        exoPlayerActivity.setOnClickListener {
+            requireActivity().openActivity<ExoPlayerActivity>()
+        }
+        exoPlayerFragment.setOnClickListener {
+            findNavController().navigate(R.id.exoPlayerFragment)
+        }
+        detailFragment.setOnClickListener {
+            findNavController().navigate(
+                R.id.detailFragment,
+                bundleOf(AppConstants.DataTask.DATA to Address("Dhaka", "1205"))
+            )
+        }
+        detailActivity.setOnClickListener {
+            requireActivity().openActivity<DetailActivity>(
+                AppConstants.DataTask.ADDRESS to Address(
+                    "Dhaka",
+                    "1205"
+                )
+            )
+        }
+        detailActivityResult.setOnClickListener {
+            resultContract.launch(requireActivity().openActivityResult<DetailActivity>())
+        }
+        dataStore.setOnClickListener {
+            findNavController().navigate(R.id.dataStoreFragment)
+        }
+        imagePicker.setOnClickListener {
+            findNavController().navigate(R.id.imagePickerFragment)
+        }
+        readJson.setOnClickListener {
+            findNavController().navigate(R.id.readJsonFragment)
+        }
+        viewPagerWithRecycler.setOnClickListener {
+            findNavController().navigate(R.id.viewPagerWithNestedRecyclerViewFragment)
+        }
+        expandableRecyclerveiw.setOnClickListener {
+            findNavController().navigate(R.id.expandableRecyclerViewFragment)
+        }
+        bottomNavigation.setOnClickListener {
+            findNavController().navigate(R.id.bottomNavigationFragment)
+        }
+        googleLogin.setOnClickListener {
+            findNavController().navigate(R.id.googleLoginFragment)
+        }
+        bottomSheet.setOnClickListener {
+            BottomSheetRound().show(childFragmentManager, AppConstants.Dialog.DIALOG_TAG)
+        }
+        gpsLocation.setOnClickListener {
+            findNavController().navigate(R.id.gpsLocationFragment)
+        }
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             // We use a String here, but any type that can be put in a Bundle is supported
             val result = bundle.getParcelable<Address>("bundleKey")

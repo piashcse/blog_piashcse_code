@@ -1,24 +1,19 @@
 package com.piashcse.experiment.mvvm_hilt.ui.parallelapicall
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentParallelApiCallBinding
 import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
 import com.piashcse.experiment.mvvm_hilt.ui.parallelapicall.adapter.MovieAdapter
+import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 import com.piashcse.experiment.mvvm_hilt.utils.hide
 import com.piashcse.experiment.mvvm_hilt.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class ParallelApiCallFragment : Fragment() {
-    private var _binding: FragmentParallelApiCallBinding? = null
-    private val binding get() = requireNotNull(_binding)
+class ParallelApiCallFragment : BaseBindingFragment<FragmentParallelApiCallBinding>() {
     private val viewModel: ParallelApiCallViewModel by viewModels()
     private val popularMovieAdapter: MovieAdapter by lazy {
         MovieAdapter()
@@ -32,31 +27,21 @@ class ParallelApiCallFragment : Fragment() {
         viewModel.popularAndTopRatedMovie()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentParallelApiCallBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    override fun init() {
+        binding.apply {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initView()
+            popularRecycler.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                adapter = popularMovieAdapter
+            }
+            topRatedRecycler.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                adapter = topRatedMovieAdapter
+            }
+        }
         apiResponse()
-    }
-
-    private fun initView() = with(binding) {
-        popularRecycler.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = popularMovieAdapter
-        }
-        topRatedRecycler.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = topRatedMovieAdapter
-        }
     }
 
     private fun apiResponse() {
@@ -91,10 +76,5 @@ class ParallelApiCallFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

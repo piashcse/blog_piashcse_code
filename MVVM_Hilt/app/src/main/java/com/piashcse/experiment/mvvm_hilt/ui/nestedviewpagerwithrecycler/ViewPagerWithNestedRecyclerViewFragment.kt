@@ -13,35 +13,17 @@ import android.widget.TextView
 import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.data.model.ChildData
 import com.piashcse.experiment.mvvm_hilt.data.model.ParentData
+import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 
 
 @AndroidEntryPoint
-class ViewPagerWithNestedRecyclerViewFragment : Fragment() {
-    private var _binding: FragmentViewPagerWithNestedRecyclerViewBinding? = null
-    private val binding get() = requireNotNull(_binding) // or _binding!!
+class ViewPagerWithNestedRecyclerViewFragment :
+    BaseBindingFragment<FragmentViewPagerWithNestedRecyclerViewBinding>() {
     private val parentAdapter: ParentAdapter by lazy {
         ParentAdapter(requireContext())
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentViewPagerWithNestedRecyclerViewBinding.inflate(
-            layoutInflater,
-            container,
-            false
-        )
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
-
-    private fun initView() {
+    override fun init() {
         binding.apply {
             viewPager.apply {
                 adapter = parentAdapter
@@ -95,10 +77,5 @@ class ViewPagerWithNestedRecyclerViewFragment : Fragment() {
                 )
             )
         )
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

@@ -3,12 +3,7 @@ package com.piashcse.experiment.mvvm_hilt.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.os.Bundle
 import android.os.Looper
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -16,12 +11,11 @@ import com.google.android.gms.location.*
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.utils.AppConstants
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentGPSLocationBinding
+import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 import com.piashcse.experiment.mvvm_hilt.utils.showToast
 import timber.log.Timber
 
-class GPSLocationFragment : Fragment() {
-    private var _binding: FragmentGPSLocationBinding? = null
-    private val binding get() = requireNotNull(_binding)
+class GPSLocationFragment : BaseBindingFragment<FragmentGPSLocationBinding>() {
     private val fusedLocationClient: FusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(requireActivity())
     }
@@ -31,17 +25,7 @@ class GPSLocationFragment : Fragment() {
         maxWaitTime = AppConstants.LOCATION.MAX_WAIT_TIME
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentGPSLocationBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun init() {
         locationPermission()
     }
 
@@ -104,7 +88,7 @@ class GPSLocationFragment : Fragment() {
                 override fun onLocationResult(locationResult: LocationResult) {
                     super.onLocationResult(locationResult)
                     binding.apply {
-                        if (isAdded){
+                        if (isAdded) {
                             lat.text = resources.getString(
                                 R.string.lat,
                                 locationResult.lastLocation.latitude.toString()
@@ -139,11 +123,4 @@ class GPSLocationFragment : Fragment() {
                 // decision.
             }
         }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
 }

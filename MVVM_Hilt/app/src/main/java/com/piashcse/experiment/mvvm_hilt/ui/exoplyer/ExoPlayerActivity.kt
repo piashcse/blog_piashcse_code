@@ -3,7 +3,6 @@ package com.piashcse.experiment.mvvm_hilt.ui.exoplyer
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -12,15 +11,15 @@ import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.util.Util
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.databinding.ActivityExoPlayerBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExoPlayerActivity : AppCompatActivity() {
-
     private val viewBinding by lazy(LazyThreadSafetyMode.NONE) {
         ActivityExoPlayerBinding.inflate(layoutInflater)
     }
 
     private var player: ExoPlayer? = null
-
     private var playWhenReady = true
     private var currentWindow = 0
     private var playbackPosition = 0L

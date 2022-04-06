@@ -1,37 +1,24 @@
 package com.piashcse.experiment.mvvm_hilt.ui.exoplyer
 
-import android.annotation.SuppressLint
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.util.Util
 import com.piashcse.experiment.mvvm_hilt.R
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentExoPlayerBinding
+import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class ExoPlayerFragment : Fragment() {
-    private var _binding: FragmentExoPlayerBinding? = null
-    private val binding get() = requireNotNull(_binding)
-
+@AndroidEntryPoint
+class ExoPlayerFragment : BaseBindingFragment<FragmentExoPlayerBinding>() {
     private var player: ExoPlayer? = null
-
     private var playWhenReady = true
     private var currentWindow = 0
     private var playbackPosition = 0L
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentExoPlayerBinding.inflate(layoutInflater, container, false)
-        return binding.root
+    override fun init() {
+
     }
 
     override fun onStart() {
@@ -89,25 +76,26 @@ class ExoPlayerFragment : Fragment() {
         player = null
     }
 
-  /*  @SuppressLint("InlinedApi")
-    private fun hideSystemUi() {
-        binding.videoView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-    }*/
+    /*  @SuppressLint("InlinedApi")
+      private fun hideSystemUi() {
+          binding.videoView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+                  or View.SYSTEM_UI_FLAG_FULLSCREEN
+                  or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                  or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                  or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                  or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+      }*/
     private fun hideSystemUi() {
         WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
-        WindowInsetsControllerCompat(requireActivity().window, binding.videoView).let { controller ->
+        WindowInsetsControllerCompat(
+            requireActivity().window,
+            binding.videoView
+        ).let { controller ->
             controller.hide(WindowInsetsCompat.Type.systemBars())
-            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }
