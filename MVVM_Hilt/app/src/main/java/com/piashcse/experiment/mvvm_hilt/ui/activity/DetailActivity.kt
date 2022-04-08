@@ -11,18 +11,20 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
-    private lateinit var bind: ActivityDetailBinding
+    private val binding: ActivityDetailBinding by lazy {
+        ActivityDetailBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bind = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(bind.root)
+        setContentView(binding.root)
         initView()
     }
 
     private fun initView() {
         val data = intent.getParcelableExtra<Address>(AppConstants.DataTask.ADDRESS)
         Timber.e("address from home : $data")
-        bind.result.setOnClickListener {
+        binding.result.setOnClickListener {
             finishActivityResult("data" to "result")
         }
     }

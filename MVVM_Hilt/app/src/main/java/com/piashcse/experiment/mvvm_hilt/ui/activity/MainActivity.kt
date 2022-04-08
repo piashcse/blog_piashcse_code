@@ -18,16 +18,19 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var alertDialog: android.app.AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
-        val bind = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bind.root)
+        setContentView(binding.root)
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         appBarConfiguration = AppBarConfiguration(navController.graph)
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                     alertDialog.hide()
 
                 }
+
                 override fun onLost(network: Network) {
                     super.onLost(network)
                     alertDialog.show()
