@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_v2_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CustomSplashScreenTheme">
+        android:theme="@style/SplashScreen">
         <activity
             android:name=".ui.exoplyer.ExoPlayerActivity"
             android:theme="@style/Theme.MVVM_Hilt"

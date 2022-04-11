@@ -32,19 +32,23 @@ class ImagePickerFragment : BaseBindingFragment<FragmentImagePickerBinding>() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             val resultCode = it.resultCode
             val data = it.data
-            if (resultCode == Activity.RESULT_OK) {
-                //Image Uri will not be null for RESULT_OK
-                val fileUri = data?.data
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data
 
-                mProfileUri = fileUri
-                binding.imageView.setImageURI(fileUri)
-                requireContext().showToast("$mProfileUri")
-                Timber.e("Result :$mProfileUri")
-            } else if (resultCode == ImagePicker.RESULT_ERROR) {
-                requireContext().showToast(ImagePicker.getError(data))
-                requireContext().showToast(ImagePicker.getError(data))
-            } else {
-                requireContext().showToast("Task Cancelled")
+                    mProfileUri = fileUri
+                    binding.imageView.setImageURI(fileUri)
+                    requireContext().showToast("$mProfileUri")
+                    Timber.e("Result :$mProfileUri")
+                }
+                ImagePicker.RESULT_ERROR -> {
+                    requireContext().showToast(ImagePicker.getError(data))
+                    requireContext().showToast(ImagePicker.getError(data))
+                }
+                else -> {
+                    requireContext().showToast("Task Cancelled")
+                }
             }
         }
 }

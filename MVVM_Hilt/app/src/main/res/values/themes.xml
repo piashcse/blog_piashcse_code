@@ -14,12 +14,7 @@
         <!-- Customize your theme here. -->
         <item name="android:homeAsUpIndicator">@color/teal_200</item>
     </style>
-    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
-        <item name="windowSplashScreenAnimationDuration">300</item>
-        <item name="postSplashScreenTheme">@style/Theme.MVVM_Hilt</item>
-    </style>
+
 
     <style name="CustomDialog" parent="android:Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>

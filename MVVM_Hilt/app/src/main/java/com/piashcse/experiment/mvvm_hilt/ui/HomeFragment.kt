@@ -19,8 +19,6 @@ import com.piashcse.experiment.mvvm_hilt.ui.commonui.BottomSheetRound
 import com.piashcse.experiment.mvvm_hilt.ui.exoplyer.ExoPlayerActivity
 import com.piashcse.experiment.mvvm_hilt.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 @AndroidEntryPoint

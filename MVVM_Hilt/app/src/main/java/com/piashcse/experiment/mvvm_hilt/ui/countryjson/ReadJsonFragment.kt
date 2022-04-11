@@ -21,7 +21,6 @@ class ReadJsonFragment : BaseBindingFragment<FragmentReadJsonBinding>() {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = countryAdapter
             }
-
             countryFilter.doOnTextChanged { text, _, _, _ ->
                 countryAdapter.filter(text.toString())
                 text?.let {
@@ -33,7 +32,7 @@ class ReadJsonFragment : BaseBindingFragment<FragmentReadJsonBinding>() {
             }
         }
         countryAdapter.onItemClick = {
-            requireContext().showToast("${it.name}")
+            requireContext().showToast(it.name)
         }
         countryAdapter.addItems(
             requireActivity().assets.readAssetsFile("country.json").fromPrettyJson<CountryName>()

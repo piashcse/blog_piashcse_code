@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_24"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/parallel_api_call"
+        android:enabled="true"
+        android:icon="@drawable/ic_music_note_24"
+        android:title="@string/parallel_api_call"/>
+    <item
+        android:id="@+id/detail_fragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_article_24"
+        android:title="@string/detail_fragment"/>
+</menu>
