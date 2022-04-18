@@ -50,6 +50,9 @@ class HomeFragment : Fragment() {
         paging3.setOnClickListener {
             findNavController().navigate(R.id.paging3Fragment)
         }
+        paging3caching.setOnClickListener {
+            findNavController().navigate(R.id.paging3CachingFragment)
+        }
         pagination.setOnClickListener {
             findNavController().navigate(R.id.paginationFragment)
         }

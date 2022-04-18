@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.piashcse.experiment.mvvm_hilt.data.datasource.local.DataStoreManager
 import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.AppDatabase
+import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.MovieDatabase
 import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.UserDao
+import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.movie.MovieDao
 import com.piashcse.experiment.mvvm_hilt.data.repository.RoomDBRepository
 import dagger.Module
 import dagger.Provides
@@ -39,6 +41,17 @@ object DataBaseModule {
     ).build()
 
     /**
+     * Provides MovieDatabase
+     */
+    @Singleton
+    @Provides
+    fun provideMovieDB(@ApplicationContext applicationContext: Context) = Room.databaseBuilder(
+        applicationContext,
+        MovieDatabase::class.java,
+        "movie_database"
+    ).build()
+
+    /**
      * Provides userDao an object to access user table from Database
      */
     @Singleton
@@ -51,5 +64,12 @@ object DataBaseModule {
     @Singleton
     @Provides
     fun provideRoomRepository(userDao: UserDao) = RoomDBRepository(userDao)
+
+    /**
+     * Provides MovieDao an object to access movie table from Database
+     */
+    @Singleton
+    @Provides
+    fun provideMovieDao(db: MovieDatabase) = db.getMovieDao()
 
 }

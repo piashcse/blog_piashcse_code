@@ -33,6 +33,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/recyclerview_paging_3" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/paging3caching"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/paging3_with_caching" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/pagination"

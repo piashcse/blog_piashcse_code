@@ -1,17 +1,22 @@
 package com.piashcse.experiment.mvvm_hilt.data.model.movie
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "movie")
 data class MovieItem(
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("genre_ids")
+    @TypeConverters(IntTypeConverter::class)
     val genreIds: List<Int>,
     @SerializedName("id")
-    val id: Int,
+    @PrimaryKey val id: Int,
     @SerializedName("original_language")
     val originalLanguage: String,
     @SerializedName("original_title")

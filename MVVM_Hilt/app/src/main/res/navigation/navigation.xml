@@ -103,5 +103,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.exoplyer.ExoPlayerFragment"
         android:label="Exoplayer"
         tools:layout="@layout/fragment_exo_player" />
+    <fragment
+        android:id="@+id/paging3CachingFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.pagin3caching.Paging3CachingFragment"
+        android:label="paging3 with caching"
+        tools:layout="@layout/fragment_paging3_caching" />
 
 </navigation>

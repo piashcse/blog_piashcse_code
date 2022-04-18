@@ -1,10 +1,16 @@
 package com.piashcse.experiment.mvvm_hilt.data.repository
 
+import android.nfc.tech.MifareUltralight.PAGE_SIZE
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.MovieDatabase
 import com.piashcse.experiment.mvvm_hilt.data.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiService
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingDataSource
+import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingMediator
+import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
 import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
 import com.piashcse.experiment.mvvm_hilt.utils.network.Resource
 import com.piashcse.experiment.mvvm_hilt.utils.jsonData
@@ -14,7 +20,7 @@ import retrofit2.Response
 import java.lang.Exception
 import javax.inject.Inject
 
-class DataRepository @Inject constructor(private val apiService: ApiService) {
+class DataRepository @Inject constructor(private val apiService: ApiService, private val movieDatabase: MovieDatabase) {
     suspend fun getRepositoryList(since: String): Response<RepositoriesModel> {
         return apiService.getGitHubRepositories(since)
     }
@@ -73,4 +79,22 @@ class DataRepository @Inject constructor(private val apiService: ApiService) {
        pagingSourceFactory = { PopularPagingDataSource(apiService) },
        config = PagingConfig(pageSize = 2)
    ).flow
+
+    @ExperimentalPagingApi
+    fun getMovieFromMediator(): Flow<PagingData<MovieItem>> {
+        val pagingSourceFactory = { movieDatabase.getMovieDao().getAll() }
+
+        return Pager(
+            config = PagingConfig(
+                pageSize = PAGE_SIZE,
+                maxSize = PAGE_SIZE + (PAGE_SIZE * 2),
+                enablePlaceholders = false,
+            ),
+            remoteMediator = PopularPagingMediator(
+                apiService,
+                movieDatabase
+            ),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
+    }
 }
