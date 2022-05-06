@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/skydoves/TheMovies2.svg?branch=master)](https://travis-ci.org/piashcse/blog_piashcse_code)
 <a href="https://github.com/piashcse"><img alt="License" src="https://img.shields.io/static/v1?label=GitHub&message=piashcse&color=C51162"/></a>
 
-This repository is maintained for commiting all the codes for my blog [PiashCSE](http://piashcse.blogspot.com/) and [medium articles](https://medium.com/@piashcse) <br>
+This repository is maintained for commiting all the codes for my blog [PiashCSE](http://piashcse.blogspot.com/) and [medium](https://medium.com/@piashcse) articles <br>
 
 <div align="center">
   <img src="https://github.com/piashcse/blog_piashcse_code/blob/master/screenshots/Screenshot 2022-04-20 at 1.38.59 AM.png" />
