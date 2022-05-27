@@ -56,6 +56,9 @@ class HomeFragment : Fragment() {
         pagination.setOnClickListener {
             findNavController().navigate(R.id.paginationFragment)
         }
+        permission.setOnClickListener {
+            findNavController().navigate(R.id.permissionFragment)
+        }
         localDb.setOnClickListener {
             findNavController().navigate(R.id.roomDBFragment)
         }

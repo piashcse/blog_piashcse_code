@@ -108,5 +108,10 @@
         android:name="com.piashcse.experiment.mvvm_hilt.ui.pagin3caching.Paging3CachingFragment"
         android:label="paging3 with caching"
         tools:layout="@layout/fragment_paging3_caching" />
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.piashcse.experiment.mvvm_hilt.ui.permission.PermissionFragment"
+        android:label="Permission "
+        tools:layout="@layout/fragment_permission" />
 
 </navigation>

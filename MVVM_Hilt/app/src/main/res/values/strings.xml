@@ -57,4 +57,7 @@
     <string name="logo">Google logo</string>
     <string name="mehedi_hassan_piash">Mehedi Hassan Piash</string>
     <string name="paging3_with_caching">Paging3 with caching</string>
+    <string name="single_permission">Single Permission</string>
+    <string name="multiple_permission">Multiple Permission</string>
+    <string name="permission">Permission</string>
 </resources>
