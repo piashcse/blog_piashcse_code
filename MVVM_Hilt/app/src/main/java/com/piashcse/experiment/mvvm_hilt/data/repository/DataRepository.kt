@@ -10,17 +10,19 @@ import com.piashcse.experiment.mvvm_hilt.data.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiService
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingDataSource
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingMediator
+import com.piashcse.experiment.mvvm_hilt.data.model.movie.BaseModel
 import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
 import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
-import com.piashcse.experiment.mvvm_hilt.utils.network.Resource
-import com.piashcse.experiment.mvvm_hilt.utils.jsonData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.lang.Exception
 import javax.inject.Inject
 
-class DataRepository @Inject constructor(private val apiService: ApiService, private val movieDatabase: MovieDatabase) {
+class DataRepository @Inject constructor(
+    private val apiService: ApiService,
+    private val movieDatabase: MovieDatabase
+) {
     suspend fun getRepositoryList(since: String): Response<RepositoriesModel> {
         return apiService.getGitHubRepositories(since)
     }
@@ -36,22 +38,17 @@ class DataRepository @Inject constructor(private val apiService: ApiService, pri
 
     }
 
-    suspend fun getRepositoryListFlow(since: String) = flow {
-        emit(Resource.loading())
+    suspend fun search(searchKey: String): Flow<DataState<BaseModel>> = flow {
+        emit(DataState.Loading)
         try {
-            val response = apiService.getGitHubRepositories(since)
-            if (response.isSuccessful) {
-                emit(Resource.success(response.body()))
-            } else {
-                emit(Resource.error(response.errorBody()?.jsonData()))
-            }
-
-        } catch (e: Throwable) {
-            emit(Resource.error(e))
+            val searchResult = apiService.search(searchKey)
+            emit(DataState.Success(searchResult))
+        } catch (e: Exception) {
+            emit(DataState.Error(e))
         }
     }
 
-    suspend fun popularMovieList(page:Int) = flow {
+    suspend fun popularMovieList(page: Int) = flow {
         emit(DataState.Loading)
         try {
             val result = apiService.popularMovieList(page)
@@ -73,12 +70,12 @@ class DataRepository @Inject constructor(private val apiService: ApiService, pri
 
     }
 
-   fun popularPagingDataSource() = Pager(
-       // Configure how data is loaded by passing additional properties to
-       // PagingConfig, such as prefetchDistance.
-       pagingSourceFactory = { PopularPagingDataSource(apiService) },
-       config = PagingConfig(pageSize = 2)
-   ).flow
+    fun popularPagingDataSource() = Pager(
+        // Configure how data is loaded by passing additional properties to
+        // PagingConfig, such as prefetchDistance.
+        pagingSourceFactory = { PopularPagingDataSource(apiService) },
+        config = PagingConfig(pageSize = 2)
+    ).flow
 
     @ExperimentalPagingApi
     fun getMovieFromMediator(): Flow<PagingData<MovieItem>> {

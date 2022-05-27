@@ -1,20 +1,15 @@
 package com.piashcse.experiment.mvvm_hilt.ui.searchwithflow
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.piashcse.experiment.mvvm_hilt.databinding.FragmentSearchWithFlowBinding
-import com.piashcse.experiment.mvvm_hilt.data.model.RepoSearchResponse
-import com.piashcse.experiment.mvvm_hilt.data.model.RepositoriesModel
-import com.piashcse.experiment.mvvm_hilt.utils.network.Status
 import com.piashcse.experiment.mvvm_hilt.ui.searchwithflow.adapter.RepositoryAdapter
 import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 import com.piashcse.experiment.mvvm_hilt.utils.errorLog
+import com.piashcse.experiment.mvvm_hilt.utils.hide
+import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
+import com.piashcse.experiment.mvvm_hilt.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -37,35 +32,22 @@ class SearchWithFlowFragment : BaseBindingFragment<FragmentSearchWithFlowBinding
         }
     }
 
-    private fun apiCall(since: String) =
-        searchFlowViewModel.getRepositoryList(since).observe(viewLifecycleOwner) {
-            when (it.status) {
-                Status.LOADING -> {
-                    errorLog("Loading..")
-                }
-                Status.SUCCESS -> {
-                    errorLog(" Success ... ${it.data}")
-                    val result = it.data as RepositoriesModel
-                }
-                Status.ERROR -> {
-                    errorLog(" Failed ...${it.data}")
-                }
-            }
-        }
-
     private fun makeFlow(since: String) =
         searchFlowViewModel.makeFlow(since).observe(viewLifecycleOwner) {
-            when (it.status) {
-                Status.LOADING -> {
+            when (it) {
+                is DataState.Loading -> {
+                    binding.progressBar.show()
                     errorLog("Loading..")
                 }
-                Status.SUCCESS -> {
-                    val result = it.data as RepoSearchResponse
-                    repoAdapter.addItems(result.repositories, true)
+                is DataState.Success -> {
+                    binding.progressBar.hide()
+                    val result = it.data
+                    repoAdapter.addItems(result.results, true)
                     errorLog(" Success ... $result")
                 }
-                Status.ERROR -> {
-                    errorLog(" Failed ...${it.data}")
+                is DataState.Error -> {
+                    binding.progressBar.hide()
+                    errorLog(" Failed ...${it}")
                 }
             }
         }

@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.piashcse.experiment.mvvm_hilt.databinding.RepositoryItemBinding
-import com.piashcse.experiment.mvvm_hilt.data.model.Repository
+import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
 
 class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
-    private val items: MutableList<Repository> = arrayListOf()
-    var onItemClick: ((Repository) -> Unit)? = null
+    private val items: MutableList<MovieItem> = arrayListOf()
+    var onItemClick: ((MovieItem) -> Unit)? = null
 
-    fun addItems(newItems: List<Repository>?, clearPreviousItem: Boolean = false) {
+    fun addItems(newItems: List<MovieItem>?, clearPreviousItem: Boolean = false) {
         newItems?.let {
             if (clearPreviousItem) {
                 items.clear()
@@ -18,14 +18,13 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewH
             } else {
                 items.addAll(newItems)
             }
-
             notifyDataSetChanged()
         }
     }
 
     inner class RepositoryViewHolder(val bind: RepositoryItemBinding) :
         RecyclerView.ViewHolder(bind.root) {
-        fun bind(item: Repository) {
+        fun bind(item: MovieItem) {
             bind.executePendingBindings()
             itemView.setOnClickListener {
                 onItemClick?.invoke(item)
@@ -41,7 +40,7 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewH
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         val item = items[position]
-        holder.bind.name.text = item.name
+        holder.bind.name.text = item.title
         return holder.bind(item)
     }
 

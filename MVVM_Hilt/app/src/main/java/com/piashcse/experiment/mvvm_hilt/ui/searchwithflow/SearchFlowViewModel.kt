@@ -20,25 +20,10 @@ class SearchFlowViewModel @Inject constructor(private val repo: DataRepository) 
             }
             .distinctUntilChanged()
             .flatMapLatest {
-                repo.getRepositoryListFlow(it)
+                repo.search(it)
             }.collect {
                 emit(it)
             }
-    }
-
-    fun getRepositoryList(since: String) = liveData(Dispatchers.IO) {
-        emit(Resource.loading())
-        try {
-            val response = repo.getRepositoryList(since)
-            if (response.isSuccessful) {
-                emit(Resource.success(response.body()))
-            } else {
-                emit(Resource.error(response.errorBody()?.jsonData()))
-            }
-
-        } catch (e: Throwable) {
-            emit(Resource.error(e))
-        }
     }
 
 }

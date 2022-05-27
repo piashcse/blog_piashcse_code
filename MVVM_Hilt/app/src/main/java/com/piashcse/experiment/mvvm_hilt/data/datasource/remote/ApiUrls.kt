@@ -12,4 +12,5 @@ object ApiUrls {
     const val MOVIE_LIST = "movie/now_playing?api_key=$API_KEY&language=en-US"
     const val POPULAR_MOVIE_LIST = "movie/popular?api_key=$API_KEY&language=en-US"
     const val TOP_RATED_MOVIE_LIST = "movie/top_rated?api_key=$API_KEY&language=en-US"
+    const val SEARCH_MOVIE ="search/movie?api_key=$API_KEY&language=en-US&page=1&include_adult=false"
 }

@@ -30,4 +30,7 @@ interface ApiService {
     @GET(ApiUrls.TOP_RATED_MOVIE_LIST)
     suspend fun topRatedMovieList(@Query("page") page: Int): BaseModel
 
+    @GET(ApiUrls.SEARCH_MOVIE)
+    suspend fun search(@Query("query") searchKey: String): BaseModel
+
 }
