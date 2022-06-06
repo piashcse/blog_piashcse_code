@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="16dp"
     android:layout_marginTop="8dp"
     android:orientation="vertical"
     tools:context=".ui.searchwithflow.SearchWithFlowFragment">
@@ -14,17 +13,21 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_search_24"
         android:drawableTint="@color/black"
-        android:hint="@string/search" />
+        android:hint="@string/search"
+        android:paddingHorizontal="16dp" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:itemCount="4"
+        tools:listitem="@layout/repository_item" />
 </androidx.appcompat.widget.LinearLayoutCompat>
