@@ -91,11 +91,11 @@ class GPSLocationFragment : BaseBindingFragment<FragmentGPSLocationBinding>() {
                         if (isAdded) {
                             lat.text = resources.getString(
                                 R.string.lat,
-                                locationResult.lastLocation.latitude.toString()
+                                locationResult.lastLocation?.latitude.toString()
                             )
                             lon.text = resources.getString(
                                 R.string.lon,
-                                locationResult.lastLocation.longitude.toString()
+                                locationResult.lastLocation?.longitude.toString()
                             )
                         }
                     }
