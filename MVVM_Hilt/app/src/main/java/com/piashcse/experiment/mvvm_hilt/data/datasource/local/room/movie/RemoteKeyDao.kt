@@ -9,13 +9,25 @@ import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.movie.Remote
 @Dao
 interface RemoteKeyDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+   /* @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(remoteKey: List<RemoteKey>)
 
     @Query("SELECT * FROM remote_keys WHERE movieId = :id")
     suspend fun remoteKeysMovieId(id: Int): RemoteKey?
 
     @Query("DELETE FROM remote_keys")
-    suspend fun deleteAll()
+    suspend fun deleteAll()*/
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertKeys(keys: List<RemoteKey>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertKey(key: RemoteKey)
+
+    @Query("select * from remote_keys where id =:key")
+    suspend fun getKeyByMovie(key: String): RemoteKey?
+
+    @Query("delete from remote_keys")
+    suspend fun clearKeys()
 }
 

@@ -1,6 +1,5 @@
 package com.piashcse.experiment.mvvm_hilt.data.repository
 
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -83,9 +82,7 @@ class DataRepository @Inject constructor(
 
         return Pager(
             config = PagingConfig(
-                pageSize = PAGE_SIZE,
-                maxSize = PAGE_SIZE + (PAGE_SIZE * 2),
-                enablePlaceholders = false,
+                pageSize = 1,
             ),
             remoteMediator = PopularPagingMediator(
                 apiService,

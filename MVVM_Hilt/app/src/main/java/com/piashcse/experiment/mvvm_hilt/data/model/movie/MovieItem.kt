@@ -11,7 +11,7 @@ data class MovieItem(
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @SerializedName("genre_ids")
     @TypeConverters(IntTypeConverter::class)
     val genreIds: List<Int>,

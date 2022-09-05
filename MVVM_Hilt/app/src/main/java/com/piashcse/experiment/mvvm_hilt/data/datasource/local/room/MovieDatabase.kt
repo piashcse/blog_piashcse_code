@@ -13,5 +13,5 @@ import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
 @TypeConverters(IntTypeConverter::class)
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun getMovieDao(): MovieDao
-    abstract fun getKeysDao(): RemoteKeyDao
+    abstract fun remoteKeyDao(): RemoteKeyDao
 }
