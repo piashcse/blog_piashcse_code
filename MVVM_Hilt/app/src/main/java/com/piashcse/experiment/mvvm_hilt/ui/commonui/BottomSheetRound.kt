@@ -8,11 +8,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.piashcse.experiment.mvvm_hilt.R
 
 class BottomSheetRound : BottomSheetDialogFragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

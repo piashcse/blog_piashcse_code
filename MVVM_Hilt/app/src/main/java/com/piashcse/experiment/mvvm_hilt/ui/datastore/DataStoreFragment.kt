@@ -19,7 +19,7 @@ class DataStoreFragment : BaseBindingFragment<FragmentDataStoreBinding>() {
 
     private fun initView() = with(binding) {
         save.setOnClickListener {
-            if (cityInput.text?.trimmedLength() ?: 0 > 0 && zipcodeInput.text?.trimmedLength() ?: 0 > 0) {
+            if ((cityInput.text?.trimmedLength() ?: 0) > 0 && (zipcodeInput.text?.trimmedLength() ?: 0) > 0) {
                 dataStoreViewModel.saveUserAddress(
                     Address(
                         cityInput.text.toString(),
@@ -27,9 +27,9 @@ class DataStoreFragment : BaseBindingFragment<FragmentDataStoreBinding>() {
                     )
                 )
             } else {
-                if (cityInput.text?.trimmedLength() ?: 0 <= 0)
+                if ((cityInput.text?.trimmedLength() ?: 0) <= 0)
                     requireActivity().showToast(resources.getString(R.string.enter_you_city_name))
-                if (zipcodeInput.text?.trimmedLength() ?: 0 <= 0)
+                if ((zipcodeInput.text?.trimmedLength() ?: 0) <= 0)
                     requireActivity().showToast(resources.getString(R.string.enter_your_city_zip_code))
             }
         }
