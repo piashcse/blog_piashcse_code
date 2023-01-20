@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 navController.navigate(R.id.detailFragment)
             }
         }
-        binding.drawerLayout.closeDrawer(GravityCompat.START);
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 

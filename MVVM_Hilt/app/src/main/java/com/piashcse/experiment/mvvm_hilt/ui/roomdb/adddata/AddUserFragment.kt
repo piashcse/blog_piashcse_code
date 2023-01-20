@@ -7,6 +7,7 @@ import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.User
 import com.piashcse.experiment.mvvm_hilt.utils.base.BaseBindingFragment
 import com.piashcse.experiment.mvvm_hilt.utils.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 
 @AndroidEntryPoint
@@ -22,8 +23,10 @@ class AddUserFragment : BaseBindingFragment<FragmentAddUserBinding>() {
                 addUserViewModel.insertUser(
                     User(
                         0,
-                        name.text.toString().capitalize(),
-                        company.text.toString().capitalize()
+                        name.text.toString()
+                            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() },
+                        company.text.toString()
+                            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
                     )
                 )
                 it.findNavController().popBackStack()

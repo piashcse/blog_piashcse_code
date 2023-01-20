@@ -56,7 +56,7 @@ class ParallelApiCallFragment : BaseBindingFragment<FragmentParallelApiCallBindi
                 }
                 is DataState.Error -> {
                     binding.progressbar.hide()
-                    Timber.e("Error -> ${it.exception.message}")
+                    Timber.e("Error -> $it")
                 }
             }
         }
@@ -72,7 +72,7 @@ class ParallelApiCallFragment : BaseBindingFragment<FragmentParallelApiCallBindi
                 }
                 is DataState.Error -> {
                     binding.progressbar.hide()
-                    Timber.e("Error -> ${it.exception.message}")
+                    Timber.e("Error -> $it")
                 }
             }
         }

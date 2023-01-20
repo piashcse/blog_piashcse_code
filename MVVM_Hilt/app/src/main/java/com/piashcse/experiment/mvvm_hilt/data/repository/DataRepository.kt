@@ -4,7 +4,9 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.room.withTransaction
 import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.MovieDatabase
+import com.piashcse.experiment.mvvm_hilt.data.datasource.local.room.movie.RemoteKey
 import com.piashcse.experiment.mvvm_hilt.data.model.RepositoriesModel
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.ApiService
 import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPagingDataSource
@@ -12,10 +14,12 @@ import com.piashcse.experiment.mvvm_hilt.data.datasource.remote.paging.PopularPa
 import com.piashcse.experiment.mvvm_hilt.data.model.movie.BaseModel
 import com.piashcse.experiment.mvvm_hilt.data.model.movie.MovieItem
 import com.piashcse.experiment.mvvm_hilt.utils.network.DataState
+import com.piashcse.experiment.mvvm_hilt.utils.network.networkBoundResource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import java.lang.Exception
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class DataRepository @Inject constructor(
@@ -32,7 +36,7 @@ class DataRepository @Inject constructor(
             val result = apiService.githubRepositories(since)
             emit(DataState.Success(result))
         } catch (e: Exception) {
-            emit(DataState.Error(e))
+            emit(DataState.Error(e.message))
         }
 
     }
@@ -43,7 +47,7 @@ class DataRepository @Inject constructor(
             val searchResult = apiService.search(searchKey)
             emit(DataState.Success(searchResult))
         } catch (e: Exception) {
-            emit(DataState.Error(e))
+            emit(DataState.Error(e.message))
         }
     }
 
@@ -53,7 +57,7 @@ class DataRepository @Inject constructor(
             val result = apiService.popularMovieList(page)
             emit(DataState.Success(result.results))
         } catch (e: Exception) {
-            emit(DataState.Error(e))
+            emit(DataState.Error(e.message))
         }
 
     }
@@ -64,7 +68,7 @@ class DataRepository @Inject constructor(
             val result = apiService.topRatedMovieList(page)
             emit(DataState.Success(result.results))
         } catch (e: Exception) {
-            emit(DataState.Error(e))
+            emit(DataState.Error(e.message))
         }
 
     }
@@ -90,5 +94,51 @@ class DataRepository @Inject constructor(
             ),
             pagingSourceFactory = pagingSourceFactory
         ).flow
+    }
+
+    fun popularMovie(page: Int, force: Boolean = true) : Flow<DataState<List<MovieItem>>> {
+        return networkBoundResource(
+            query = {
+                movieDatabase.getMovieDao().getFlowMovies(50)
+            },
+            fetch = {
+                apiService.popularMovieList(page)
+            },
+            saveFetchResult = { items ->
+                val resultEntity = items.results.map {
+                    it
+                }
+                movieDatabase.withTransaction {
+                    movieDatabase.getMovieDao().clearMovies()
+
+                    movieDatabase.remoteKeyDao().insertKey(
+                        RemoteKey(
+                            id = "popular_movie",
+                            next_page = page + 1,
+                            last_updated = System.currentTimeMillis()
+                        )
+                    )
+                    movieDatabase.getMovieDao().insertAll(resultEntity)
+                }
+            },
+            shouldFetch = {
+                if(force) {
+                    true
+                } else {
+                    val remoteKey = movieDatabase.withTransaction {
+                        movieDatabase.remoteKeyDao().getKeyByMovie("popular_movie")
+                    }
+
+                    if(remoteKey == null) {
+                        true
+                    }
+                    else {
+                        val cacheTimeout = TimeUnit.HOURS.convert(1, TimeUnit.MILLISECONDS)
+
+                        (System.currentTimeMillis() - remoteKey.last_updated) < cacheTimeout
+                    }
+                }
+            }
+        )
     }
 }

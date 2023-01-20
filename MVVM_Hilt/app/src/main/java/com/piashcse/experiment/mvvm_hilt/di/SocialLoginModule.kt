@@ -21,6 +21,6 @@ object SocialLoginModule {
             .requestEmail()
             .requestIdToken("165959276467-4q6oqs1dt8dikeloe52g7283l42gcome.apps.googleusercontent.com")
             .build()
-        return GoogleSignIn.getClient(appContext, gso);
+        return GoogleSignIn.getClient(appContext, gso)
     }
 }
