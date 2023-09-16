@@ -19,15 +19,15 @@ interface RemoteKeyDao {
     suspend fun deleteAll()*/
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertKeys(keys: List<RemoteKey>)
+    fun insertKeys(keys: List<RemoteKey>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertKey(key: RemoteKey)
+    fun insertKey(key: RemoteKey)
 
     @Query("select * from remote_keys where id =:key")
-    suspend fun getKeyByMovie(key: String): RemoteKey?
+    fun getKeyByMovie(key: String): RemoteKey?
 
     @Query("delete from remote_keys")
-    suspend fun clearKeys()
+    fun clearKeys()
 }
 

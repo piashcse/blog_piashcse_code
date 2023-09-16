@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.Flow
 interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(cats: List<MovieItem>)
+    fun insertAll(cats: List<MovieItem>)
 
     @Query("delete from movie")
-    suspend fun clearMovies()
+    fun clearMovies()
 
     @Query("select * from movie order by id asc")
     fun getAll(): PagingSource<Int, MovieItem>
